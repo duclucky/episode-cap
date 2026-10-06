@@ -2,7 +2,7 @@
 
 The approved replacement is FINALIZED/SUCCESS on Studio Dev, chain 61997,
 at 0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6. Independent read-only verification passed after
-all five signed lifecycles completed. Public GitHub and CI remain pending.
+all five signed lifecycles completed. Public GitHub and successful CI are verified.
 Strict historical test-first compliance is not certified; see the limitation below.
 
 ## Commands and actual results
@@ -52,8 +52,9 @@ Six withdrawals reconcile; all five covers and the contract have zero liability.
 
 The first read-only verifier encountered the explicit hosted RPC limit of
 30 requests/minute. HTTP request pacing at 2200 ms now preserves the quota,
-including SDK subrequests. Two regressions were RED before implementation and
-now pass: concurrent reads remain within the rolling quota, and a failed read
+including SDK subrequests. The test module failed with ERR_MODULE_NOT_FOUND
+before implementation; both regressions now pass: concurrent reads remain
+within the rolling quota, and a failed read
 consumes its slot without replay or queue poisoning. No state/receipt assertion
 or evidence requirement was removed. Official tooling notes describe hosted
 Studio as rate-limited: https://docs.genlayer.com/developers/intelligent-contracts/tooling-setup
@@ -112,3 +113,12 @@ subscription, external service delivery, legal insurance or compensation receipt
 The tested value recipient boundary is EOA/EVM; Intelligent Contract recipients
 and callbacks are outside verified scope. Three proposed consumers are documented
 in [integration guidance](INTEGRATION.md); no external adoption is claimed.
+
+## Public evidence
+
+Repository: https://github.com/duclucky/episode-cap (PUBLIC).
+Successful Windows CI: https://github.com/duclucky/episode-cap/actions/runs/37438962606 at commit 2296bb11d6261267d40120f54b51b57cbbb1114d.
+107 direct tests and 21 script/receipt tests pass with one recognized EpisodeCap
+contract. The current workspace grader reports 0 BLOCKER, 0 WARN, dynamic checks
+PASS and GATE OK; manual meaning/reuse/source/lifecycle criteria are addressed
+in REVIEW.md and the specification. No grading rule was weakened.

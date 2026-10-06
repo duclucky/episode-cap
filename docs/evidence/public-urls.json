@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-06T08:58:40.937Z",
+  "reachability": [
+    {
+      "url": "https://github.com/duclucky/episode-cap",
+      "httpStatus": 200
+    },
+    {
+      "url": "https://github.com/duclucky/episode-cap/actions/runs/37438962606",
+      "httpStatus": 200
+    }
+  ]
+}

@@ -6,7 +6,7 @@
 - Name/slug: EpisodeCap / episode-cap.
 - Category: Intelligent Contracts; contract-only.
 - Status: IMPLEMENTED; fourteen admission gates passed; full lifecycle PASS_EXECUTION. Historical strict-TDD limitation remains documented.
-- Repository: local child Git root episode-cap; public URL pending publication.
+- Repository: https://github.com/duclucky/episode-cap; public with meaningful history and verified successful CI.
 - Target: Studio Dev, chain 61997, RPC https://studio-next.genlayer.com/api.
 
 ## One-sentence product hook
@@ -335,9 +335,9 @@ simulation. Fee requests and action authority remain separately enforced.
 - [x] Direct/gltest/adversarial/recovery/temporal/receipt/check all pass.
 - [x] Real finalized same/separate/recovery lifecycles with direct consequence.
 - [x] Canonical reads, exact native decreases, recipient/child and zero liability.
-- [ ] Public hygiene, meaningful history, public repo and successful CI verified.
-- [ ] Copy-ready verified Portal fields and objective grading bot NO BLOCKER, without weakened rules.
-- [ ] Final master-prompt item-by-item audit; all uncertainty listed honestly.
+- [x] Public hygiene, meaningful history, public repo and successful CI verified.
+- [x] Copy-ready verified Portal fields and objective grading bot NO BLOCKER, without weakened rules.
+- [x] Final master-prompt item-by-item audit; all uncertainty listed honestly, including the historical strict-TDD limitation in VERIFICATION.md.
 
 Projects checks N/A: no user-facing app, browser workflow or hosting.
 

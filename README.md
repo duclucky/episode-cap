@@ -15,7 +15,7 @@ and four production semantic regressions succeeded.
 The workspace precheck storage incompatibility was corrected with regression
 tests, preserving rejection of missing or fake decorators. The first deployed
 revision failed an adversarial event-support case, was fully recovered to zero
-liability and is abandoned. Public CI remains pending; strict historical
+liability and is abandoned. Public GitHub and CI are verified; strict historical
 test-first compliance cannot be certified. See
 [verification and limits](docs/VERIFICATION.md).
 
