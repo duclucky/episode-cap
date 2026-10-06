@@ -4,6 +4,7 @@ import {safeReceipt} from './receipts.mjs';
 import {settledTransferFee} from './transfer-fees.mjs';
 import {examples} from './examples.mjs';
 import {optionalCover} from './optional-cover.mjs';
+import {externalPriceCap} from './external-price.mjs';
 import {ROOT,EVIDENCE,DEPLOYMENT,CHAIN,GEN,context,sourceHash,gen,amount,guard,report,load,save,view,measuredFees,addressArg} from './network.mjs';
 const STATE=path.join(ROOT,'local/lifecycle.json');
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -40,8 +41,8 @@ async function main(){
     guard(!state.transactions[key],'DUPLICATE_STEP_REFUSED');
     const client=clients[role];let allocations;
     if(method==='withdraw_credit'){
-      const gasPrice=BigInt(await publicClient.request({method:'eth_gasPrice',params:[]}));
-      guard(gasPrice>0n,'EXTERNAL_GAS_PRICE_REQUIRED');
+      // Studio's outer EVM gas price is zero; quote the live protocol policy.
+      const gasPrice=externalPriceCap(await publicClient.getCurrentFeePolicy());
       allocations=[{messageType:MessageType.External,recipient:roles[role].address,callKey:CALL_KEY_UNNAMED,budget:21000n*gasPrice,feeParams:encodeExternalMessageFeeParams({gasLimit:21000n,maxGasPrice:gasPrice})}];
     }
     const quote=await measuredFees(client,address,method,args,value,allocations);
