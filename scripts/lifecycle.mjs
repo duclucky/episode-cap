@@ -9,6 +9,7 @@ import {ROOT,EVIDENCE,DEPLOYMENT,CHAIN,GEN,context,sourceHash,gen,amount,guard,r
 const STATE=path.join(ROOT,'local/lifecycle.json');
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function main(){
+  const recovery=process.argv.includes('--recover');
   const d=load(DEPLOYMENT);guard(d?.active&&d.chainId===CHAIN&&d.sourceSha256===sourceHash(),'DEPLOYMENT_IDENTITY_REQUIRED');
   const {roles,clients,publicClient}=await context(true), address=d.contractAddress;
   const state=load(STATE,{contractAddress:address,cases:{},transactions:{}});
@@ -64,24 +65,26 @@ async function main(){
   ];
   for(const scenario of cases){
     const {name}=scenario;
+    if(recovery&&!state.cases[name])continue;
     const item=state.cases[name]??={id:`ec-${d.sourceCommit.slice(0,7)}-${name}`,withdrawals:{},judgments:[]};persist();
     const id=item.id;let cover=await maybeCover(id);
     if(!cover){
+      guard(!recovery,'RECOVERY_CANNOT_CREATE_OR_FUND_NEW_COVER');
       const now=Date.now(),duration=name==='expiry'?60000:scenario.count?7200000:240000;
       item.ratifyDeadline=new Date(now+(name==='expiry'?30000:scenario.count?3600000:120000)).toISOString();
       item.reviewDeadline=new Date(now+duration).toISOString();persist();
       await write(name,'funder','create_cover',[id,addressArg(roles.beneficiary.address),JSON.stringify(scenario.events),item.ratifyDeadline,item.reviewDeadline],scenario.deposit);
       cover=await read('get_cover',[id]);
     }
-    if(name!=='expiry'&&cover.status==='RATIFYING'){
+    if(!recovery&&name!=='expiry'&&cover.status==='RATIFYING'){
       await write(name,'beneficiary','ratify_cover',[id,cover.definition_digest]);cover=await read('get_cover',[id]);
     }
     const requestedAttempts=name==='retry'?2:name==='expiry'?0:1;
-    while(['READY','RETRYABLE'].includes(cover.status)&&cover.attempts<requestedAttempts&&Date.now()/1000<cover.review_deadline){
+    while(!recovery&&['READY','RETRYABLE'].includes(cover.status)&&cover.attempts<requestedAttempts&&Date.now()/1000<cover.review_deadline){
       const next=cover.attempts+1;
       await write(name,'funder','review_cover',[id],0n,next);cover=await read('get_cover',[id]);
     }
-    if(requestedAttempts&&cover.attempts&&!item.judgmentVerified){
+    if(!recovery&&requestedAttempts&&cover.attempts&&!item.judgmentVerified){
       item.judgments=[];
       for(let index=1;index<=cover.attempts;index++)item.judgments.push(await read('get_attempt',[id,index]));
       item.afterReview=cover;item.occurrences=await read('get_occurrences',[id]);
@@ -102,7 +105,7 @@ async function main(){
       item.judgmentVerified=true;persist();console.log(JSON.stringify({stage:'JUDGMENT_PROVED',case:name,status:cover.status,occurrences:cover.occurrence_count,attempts:cover.attempts,consensus:item.consensus}));
     }
     if(['RATIFYING','READY','RETRYABLE'].includes(cover.status)){
-      guard(!scenario.count,'UNEXPECTED_PENDING_SETTLEMENT');
+      guard(recovery||!scenario.count,'UNEXPECTED_PENDING_SETTLEMENT');
       while(Date.now()/1000<cover.review_deadline+2){
         const seconds=Math.ceil(cover.review_deadline+2-Date.now()/1000);console.log(JSON.stringify({stage:'WAITING_FOR_EXPIRY',case:name,seconds}));await sleep(Math.min(15000,seconds*1000));
       }
@@ -142,9 +145,9 @@ async function main(){
     guard(item.finalCover.status==='CLOSED'&&item.finalCover.reserve==='0 GEN'&&item.finalCover.funder_credit==='0 GEN'&&item.finalCover.beneficiary_credit==='0 GEN','CLOSED_ZERO_LIABILITY_REQUIRED');
   }
   const accounting=await read('get_accounting'),nativeBalance=gen(await publicClient.getBalance({address}));
-  guard(['same','separate','retry','digest'].every(name=>state.cases[name].judgmentVerified),'ALL_REQUIRED_JUDGMENTS_REQUIRED');
-  guard(accounting.conserved&&accounting.received==='7 GEN'&&accounting.withdrawn==='7 GEN'&&accounting.locked==='0 GEN'&&accounting.credits==='0 GEN'&&nativeBalance==='0 GEN','GLOBAL_ZERO_LIABILITY_REQUIRED');
-  save(path.join(EVIDENCE,'lifecycle.json'),{command:'node scripts/lifecycle.mjs',checkedAt:new Date().toISOString(),network:'Studio Dev',chainId:CHAIN,contractAddress:address,sourceSha256:sourceHash(),roles:Object.fromEntries(Object.entries(roles).map(([role,account])=>[role,account.address])),cases:state.cases,transactions:state.transactions,accounting,nativeBalance,evidenceIsSanitized:true});
-  console.log(JSON.stringify({stage:'LIFECYCLE_PASS',cases:5,accounting,nativeBalance}));
+  if(!recovery)guard(['same','separate','retry','digest'].every(name=>state.cases[name].judgmentVerified),'ALL_REQUIRED_JUDGMENTS_REQUIRED');
+  guard(accounting.conserved&&(recovery||accounting.received==='7 GEN')&&accounting.withdrawn===accounting.received&&accounting.locked==='0 GEN'&&accounting.credits==='0 GEN'&&nativeBalance==='0 GEN','GLOBAL_ZERO_LIABILITY_REQUIRED');
+  save(path.join(EVIDENCE,recovery?'recovery.json':'lifecycle.json'),{command:recovery?'node scripts/lifecycle.mjs --recover':'node scripts/lifecycle.mjs',mode:recovery?'RECOVERY_OF_BROKEN_REVISION':'FULL_LIFECYCLE',checkedAt:new Date().toISOString(),network:'Studio Dev',chainId:CHAIN,contractAddress:address,sourceSha256:sourceHash(),roles:Object.fromEntries(Object.entries(roles).map(([role,account])=>[role,account.address])),cases:state.cases,transactions:state.transactions,accounting,nativeBalance,evidenceIsSanitized:true});
+  console.log(JSON.stringify({stage:recovery?'RECOVERY_ZERO_LIABILITY':'LIFECYCLE_PASS',cases:Object.keys(state.cases).length,accounting,nativeBalance}));
 }
 main().catch(report);

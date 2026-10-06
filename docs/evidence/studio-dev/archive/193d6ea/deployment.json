@@ -1,0 +1,51 @@
+{
+  "network": "Studio Dev",
+  "chainId": 61997,
+  "rpc": "https://studio-next.genlayer.com/api",
+  "contract": "EpisodeCap",
+  "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+  "contractVersion": "EC_V1",
+  "depends": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng",
+  "sourceCommit": "193d6eaa10ba71b06ce58eb099d6be0cd454f5cc",
+  "sourceSha256": "bde505671761fb7d6249e538553d99d874f7c69044eff76312e74f48e7d4de43",
+  "sourceDirtyAtDeployment": false,
+  "deployedAt": "2026-10-06T02:24:18.968Z",
+  "active": false,
+  "status": "ABANDONED_SEMANTIC_DEFECT",
+  "deploy": {
+    "transactionHash": "0x65b35540cf28310b5375a64d381e85f8c64387f663107221f7954e3b1f28b59b",
+    "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+    "status": "FINALIZED",
+    "executionResult": "SUCCESS"
+  },
+  "feeDeposit": "0.100000000000010352 GEN",
+  "explorerUrl": "https://explorer-studio-dev.genlayer.com/address/0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+  "deployTxUrl": "https://explorer-studio-dev.genlayer.com/transactions/0x65b35540cf28310b5375a64d381e85f8c64387f663107221f7954e3b1f28b59b",
+  "schemaMethods": [
+    "close_cover",
+    "create_cover",
+    "expire_cover",
+    "get_accounting",
+    "get_attempt",
+    "get_cover",
+    "get_credit",
+    "get_event",
+    "get_occurrences",
+    "ratify_cover",
+    "review_cover",
+    "withdraw_credit"
+  ],
+  "smoke": {
+    "accounting": {
+      "conserved": true,
+      "credits": "0 GEN",
+      "locked": "0 GEN",
+      "received": "0 GEN",
+      "withdrawn": "0 GEN"
+    }
+  },
+  "evidenceIsSanitized": true,
+  "reason": "Full event description was not enforced; unsupported compensation proposition was falsely SUPPORTED",
+  "failedJudgmentTx": "0xf5322cff3236b1f553d3d80e5c05d16c3230df160392565e0ec15390fb132076",
+  "recovery": "recovery.json; native balance 0 GEN; received/withdrawn 5 GEN; all covers CLOSED"
+}

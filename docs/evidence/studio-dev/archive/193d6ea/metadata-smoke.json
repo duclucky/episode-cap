@@ -1,0 +1,18 @@
+{
+  "command": "node scripts/metadata-smoke.mjs",
+  "at": "2026-10-06T02:45:39.190Z",
+  "network": "Studio Dev",
+  "chainId": 61997,
+  "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+  "sourceSha256": "bde505671761fb7d6249e538553d99d874f7c69044eff76312e74f48e7d4de43",
+  "mode": "UNSIGNED_SIMULATION",
+  "method": "close_cover",
+  "zeroValueControl": "SUCCESS",
+  "simulatedValue": "1 GEN",
+  "executionResult": "ERROR",
+  "nonpayableValueRejected": true,
+  "canonicalCoverUnchanged": true,
+  "noKeysLoaded": true,
+  "noTransactionSubmitted": true,
+  "noGENSent": true
+}

@@ -1,7 +1,9 @@
 # Verification checkpoint - 2026-10-06
 
-This repository is not deployment-ready or submission-ready. No transaction was
-submitted, no GEN was transferred, and no deployed address is claimed.
+This repository is not submission-ready. The first deployed revision failed an
+adversarial full-event-support check and is abandoned. All its funded covers
+were closed, received/withdrawn accounting reconciled at 5 GEN, and its native
+balance is zero. Replacement verification remains pending.
 
 ## Local verification
 
@@ -15,8 +17,8 @@ Validation passed
 Contract: EpisodeCap
 Methods: 12 (6 view, 6 write)
 101 passed
-tests 9
-pass 9
+tests 19
+pass 19
 fail 0
 CHECK PASS: contract lint, direct tests, metadata, receipt parsers, script syntax
 ```
@@ -76,9 +78,30 @@ create/ratify checked accounting only after mutation, and closed idempotency
 skipped accounting validation. Invariants now precede those mutations/returns.
 The expanded direct suite passes 101 cases, plus nine receipt/fee tests.
 
-No ExplorerUrl can be supplied honestly before an actual deployment. GitHub
-publication, successful public CI, finalized lifecycle evidence, and the final
-acceptance command remain pending.
+GitHub publication, successful public CI, a correct replacement full lifecycle,
+and the final acceptance command remain pending. The old deployment URL exists
+but must not be used as proof that unsupported event descriptions are rejected.
+
+## Failed semantic revision and recovery
+
+The first revision accepted an unsupported compensation-transfer description
+because its genuine outage excerpt was sufficient under an underspecified
+prompt. The live adversarial review incorrectly finalized SUPPORTED and credited
+1 GEN. The expected non-penalizing test was retained. This is a semantic defect,
+not an RPC outage or merely a test fixture issue.
+
+No further deposits were sent to that revision. The remaining fixed-recipient
+credit was withdrawn and every cover closed. Canonical accounting and native
+balance were read again after recovery. See the
+[archived incident](evidence/studio-dev/archive/193d6ea/INCIDENT.md) and
+[recovery evidence](evidence/studio-dev/archive/193d6ea/recovery.json).
+
+The proposed prompt verifies every material assertion in the full event field;
+an excerpt is a location anchor, not a replacement for the event proposition.
+Absent or contradictory claims and unreported payment assertions are
+UNVERIFIABLE. A valid WARP description was conservatively rejected in one probe,
+so its not-yet-ratified selector/anchor was made explicit; the failed probe is
+recorded in the incident. No source hash or settlement invariant was weakened.
 
 ## Process limitation
 

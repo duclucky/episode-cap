@@ -10,9 +10,10 @@ Category: Intelligent Contracts. No user-facing app.
 Status: local implementation passes lint and 101 direct tests. Unsigned Studio
 Dev constructor/schema and production semantic helper simulations succeeded.
 The workspace precheck storage incompatibility was corrected with regression
-tests, preserving rejection of missing or fake decorators. Finalized consensus,
-real value transfers, public CI and submission readiness remain pending. No
-deployed address is claimed. See [verification and limits](docs/VERIFICATION.md).
+tests, preserving rejection of missing or fake decorators. The first deployed
+revision failed an adversarial event-support case, was fully recovered to zero
+liability and is abandoned. Replacement verification, public CI and submission
+readiness remain pending; see [verification and limits](docs/VERIFICATION.md).
 
 See [specification](docs/README.md) for the public interface, trust boundary,
 authority, settlement invariants and adversarial acceptance cases.
@@ -64,3 +65,18 @@ validated separate causes, the beneficiary receives 2 GEN credit. A malformed,
 unverifiable or hash-mismatched report never opens a payment path; unresolved
 funds remain available for expiry refund. Actual withdrawals require finalized
 receipts, exact native balance decreases and fee-adjusted recipient evidence.
+
+## Archived deployment - do not fund
+
+NETWORK = Studio Dev, chain ID 61997.
+CONTRACT_ADDRESS = `0xE68d3276a00E47474EDfd401690f94505f4FDb6f`.
+Deployment **Result: SUCCESS**, Status: FINALIZED.
+
+[Contract explorer](https://explorer-studio-dev.genlayer.com/address/0xE68d3276a00E47474EDfd401690f94505f4FDb6f)
+| [Deploy transaction](https://explorer-studio-dev.genlayer.com/transactions/0x65b35540cf28310b5375a64d381e85f8c64387f663107221f7954e3b1f28b59b)
+| [Archived deployment identity](docs/evidence/studio-dev/archive/193d6ea/deployment.json).
+
+The deployment binds exact source commit `193d6ea` to contract EC_V1 and runner
+`py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng`.
+This revision is ABANDONED_SEMANTIC_DEFECT, not an active successful contribution.
+See [incident and zero-liability recovery](docs/evidence/studio-dev/archive/193d6ea/INCIDENT.md).

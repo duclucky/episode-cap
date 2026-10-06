@@ -1,0 +1,585 @@
+{
+  "command": "node scripts/lifecycle.mjs --recover",
+  "mode": "RECOVERY_OF_BROKEN_REVISION",
+  "checkedAt": "2026-10-06T02:52:42.465Z",
+  "network": "Studio Dev",
+  "chainId": 61997,
+  "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+  "sourceSha256": "bde505671761fb7d6249e538553d99d874f7c69044eff76312e74f48e7d4de43",
+  "roles": {
+    "funder": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+    "beneficiary": "0x45aD397c438397A702B53a7499a78D08961D39Db"
+  },
+  "cases": {
+    "same": {
+      "id": "ec-193d6ea-same",
+      "withdrawals": {
+        "beneficiary": {
+          "amount": "1 GEN",
+          "nativeBefore": "2 GEN",
+          "recipientBefore": "21.658595138166637418 GEN",
+          "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+          "complete": true,
+          "nativeAfter": "1 GEN",
+          "nativeDecrease": "1 GEN",
+          "recipientAfter": "22.658468832666636595 GEN",
+          "recipientNetIncrease": "0.999873694499999177 GEN",
+          "fee": {
+            "status": "settled",
+            "paid": "0.001218825600010352 GEN",
+            "refunded": "0.001087270100009529 GEN",
+            "charged": "0.000131555500000823 GEN",
+            "recipientFeePayout": "0.00000525 GEN",
+            "netCharged": "0.000126305500000823 GEN",
+            "externalFeePayouts": [
+              {
+                "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+                "amount": "0.00000525 GEN"
+              }
+            ]
+          },
+          "parentReceipt": {
+            "role": "beneficiary",
+            "method": "withdraw_credit",
+            "value": "0 GEN",
+            "feeDeposit": "0.001218825600010352 GEN",
+            "transactionHash": "0x6d06cb1091141b8b3a11aea48b0a63e8c69e1fe6be6bfcd7f1b540db53a5dfcb",
+            "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+            "status": "FINALIZED",
+            "executionResult": "SUCCESS"
+          },
+          "externalMessage": {
+            "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+            "value": "1 GEN"
+          },
+          "childReceipts": [],
+          "childBoundary": "External native transfer executed within finalized parent; no triggered child transaction reported",
+          "creditAfter": "0 GEN",
+          "checkedAt": "2026-10-06T02:36:21.898Z"
+        },
+        "funder": {
+          "amount": "1 GEN",
+          "nativeBefore": "1 GEN",
+          "recipientBefore": "47.287262033082883042 GEN",
+          "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+          "complete": true,
+          "nativeAfter": "0 GEN",
+          "nativeDecrease": "1 GEN",
+          "recipientAfter": "48.287135727582882219 GEN",
+          "recipientNetIncrease": "0.999873694499999177 GEN",
+          "fee": {
+            "status": "settled",
+            "paid": "0.001218825600010352 GEN",
+            "refunded": "0.001087270100009529 GEN",
+            "charged": "0.000131555500000823 GEN",
+            "recipientFeePayout": "0.00000525 GEN",
+            "netCharged": "0.000126305500000823 GEN",
+            "externalFeePayouts": [
+              {
+                "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+                "amount": "0.00000525 GEN"
+              }
+            ]
+          },
+          "parentReceipt": {
+            "role": "funder",
+            "method": "withdraw_credit",
+            "value": "0 GEN",
+            "feeDeposit": "0.001218825600010352 GEN",
+            "transactionHash": "0xb90a5b218df74fb896687dfe374d88c15560a05b0ae6f114a6a50e7c50aec700",
+            "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+            "status": "FINALIZED",
+            "executionResult": "SUCCESS"
+          },
+          "externalMessage": {
+            "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+            "value": "1 GEN"
+          },
+          "childReceipts": [],
+          "childBoundary": "External native transfer executed within finalized parent; no triggered child transaction reported",
+          "creditAfter": "0 GEN",
+          "checkedAt": "2026-10-06T02:37:06.616Z"
+        }
+      },
+      "judgments": [
+        {
+          "attempt": 1,
+          "cover_id": "ec-193d6ea-same",
+          "definition_digest": "1b521dfbcf1955cdf00f21d7da310bc2bc994b274a91a0889bfa518c1ea42a76",
+          "occurrence_count": 1,
+          "relations": {
+            "access:warp": "SAME_CAUSE"
+          },
+          "source_code": "COMPLETE",
+          "stage": "SETTLED",
+          "supports": {
+            "access": "SUPPORTED",
+            "warp": "SUPPORTED"
+          }
+        }
+      ],
+      "ratifyDeadline": "2026-10-06T03:30:20.216Z",
+      "reviewDeadline": "2026-10-06T04:30:20.216Z",
+      "afterReview": {
+        "attempts": 1,
+        "beneficiary": "0x45ad397c438397a702b53a7499a78d08961d39db",
+        "beneficiary_credit": "1 GEN",
+        "definition_digest": "1b521dfbcf1955cdf00f21d7da310bc2bc994b274a91a0889bfa518c1ea42a76",
+        "deposit": "2 GEN",
+        "event_count": 2,
+        "funder": "0xc495ef51618d03267a1f227afe5b27b38c748272",
+        "funder_credit": "1 GEN",
+        "id": "ec-193d6ea-same",
+        "occurrence_count": 1,
+        "ratify_deadline": 1791257420,
+        "reserve": "0 GEN",
+        "review_deadline": 1791261020,
+        "status": "SETTLED",
+        "version": "EC_V1",
+        "withdrawn": "0 GEN"
+      },
+      "occurrences": {
+        "count": 1,
+        "cover_id": "ec-193d6ea-same",
+        "event_roots": {
+          "access": "access",
+          "warp": "access"
+        }
+      },
+      "consensus": [
+        {
+          "leaderOnly": false,
+          "initialValidators": 5,
+          "result": "MAJORITY_AGREE"
+        }
+      ],
+      "judgmentVerified": true,
+      "finalCover": {
+        "attempts": 1,
+        "beneficiary": "0x45ad397c438397a702b53a7499a78d08961d39db",
+        "beneficiary_credit": "0 GEN",
+        "definition_digest": "1b521dfbcf1955cdf00f21d7da310bc2bc994b274a91a0889bfa518c1ea42a76",
+        "deposit": "2 GEN",
+        "event_count": 2,
+        "funder": "0xc495ef51618d03267a1f227afe5b27b38c748272",
+        "funder_credit": "0 GEN",
+        "id": "ec-193d6ea-same",
+        "occurrence_count": 1,
+        "ratify_deadline": 1791257420,
+        "reserve": "0 GEN",
+        "review_deadline": 1791261020,
+        "status": "CLOSED",
+        "version": "EC_V1",
+        "withdrawn": "2 GEN"
+      }
+    },
+    "separate": {
+      "id": "ec-193d6ea-separate",
+      "withdrawals": {
+        "beneficiary": {
+          "amount": "2 GEN",
+          "nativeBefore": "2 GEN",
+          "recipientBefore": "22.658390204166635772 GEN",
+          "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+          "complete": true,
+          "nativeAfter": "0 GEN",
+          "nativeDecrease": "2 GEN",
+          "recipientAfter": "24.658263898416634949 GEN",
+          "recipientNetIncrease": "1.999873694249999177 GEN",
+          "fee": {
+            "status": "settled",
+            "paid": "0.001218826800010352 GEN",
+            "refunded": "0.001087271050009529 GEN",
+            "charged": "0.000131555750000823 GEN",
+            "recipientFeePayout": "0.00000525 GEN",
+            "netCharged": "0.000126305750000823 GEN",
+            "externalFeePayouts": [
+              {
+                "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+                "amount": "0.00000525 GEN"
+              }
+            ]
+          },
+          "parentReceipt": {
+            "role": "beneficiary",
+            "method": "withdraw_credit",
+            "value": "0 GEN",
+            "feeDeposit": "0.001218826800010352 GEN",
+            "transactionHash": "0xe7872192a5548f0e78b578b1d73a1d6819f723168a410f350344b9a0e63e349f",
+            "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+            "status": "FINALIZED",
+            "executionResult": "SUCCESS"
+          },
+          "externalMessage": {
+            "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+            "value": "2 GEN"
+          },
+          "childReceipts": [],
+          "childBoundary": "External native transfer executed within finalized parent; no triggered child transaction reported",
+          "creditAfter": "0 GEN",
+          "checkedAt": "2026-10-06T02:41:05.599Z"
+        }
+      },
+      "judgments": [
+        {
+          "attempt": 1,
+          "cover_id": "ec-193d6ea-separate",
+          "definition_digest": "a9ce608210e73b8dc141a53549e00bdf0932158e4dd34be3a4867542add413ab",
+          "occurrence_count": 2,
+          "relations": {
+            "resolver:bgp": "SEPARATE_CAUSES"
+          },
+          "source_code": "COMPLETE",
+          "stage": "SETTLED",
+          "supports": {
+            "bgp": "SUPPORTED",
+            "resolver": "SUPPORTED"
+          }
+        }
+      ],
+      "ratifyDeadline": "2026-10-06T03:37:51.951Z",
+      "reviewDeadline": "2026-10-06T04:37:51.951Z",
+      "afterReview": {
+        "attempts": 1,
+        "beneficiary": "0x45ad397c438397a702b53a7499a78d08961d39db",
+        "beneficiary_credit": "2 GEN",
+        "definition_digest": "a9ce608210e73b8dc141a53549e00bdf0932158e4dd34be3a4867542add413ab",
+        "deposit": "2 GEN",
+        "event_count": 2,
+        "funder": "0xc495ef51618d03267a1f227afe5b27b38c748272",
+        "funder_credit": "0 GEN",
+        "id": "ec-193d6ea-separate",
+        "occurrence_count": 2,
+        "ratify_deadline": 1791257871,
+        "reserve": "0 GEN",
+        "review_deadline": 1791261471,
+        "status": "SETTLED",
+        "version": "EC_V1",
+        "withdrawn": "0 GEN"
+      },
+      "occurrences": {
+        "count": 2,
+        "cover_id": "ec-193d6ea-separate",
+        "event_roots": {
+          "bgp": "bgp",
+          "resolver": "resolver"
+        }
+      },
+      "consensus": [
+        {
+          "leaderOnly": false,
+          "initialValidators": 5,
+          "result": "MAJORITY_AGREE"
+        }
+      ],
+      "judgmentVerified": true,
+      "finalCover": {
+        "attempts": 1,
+        "beneficiary": "0x45ad397c438397a702b53a7499a78d08961d39db",
+        "beneficiary_credit": "0 GEN",
+        "definition_digest": "a9ce608210e73b8dc141a53549e00bdf0932158e4dd34be3a4867542add413ab",
+        "deposit": "2 GEN",
+        "event_count": 2,
+        "funder": "0xc495ef51618d03267a1f227afe5b27b38c748272",
+        "funder_credit": "0 GEN",
+        "id": "ec-193d6ea-separate",
+        "occurrence_count": 2,
+        "ratify_deadline": 1791257871,
+        "reserve": "0 GEN",
+        "review_deadline": 1791261471,
+        "status": "CLOSED",
+        "version": "EC_V1",
+        "withdrawn": "2 GEN"
+      }
+    },
+    "retry": {
+      "id": "ec-193d6ea-retry",
+      "withdrawals": {
+        "beneficiary": {
+          "amount": "1 GEN",
+          "nativeBefore": "1 GEN",
+          "recipientBefore": "24.658185269666634126 GEN",
+          "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+          "complete": true,
+          "nativeAfter": "0 GEN",
+          "nativeDecrease": "1 GEN",
+          "recipientAfter": "25.658058964166633303 GEN",
+          "recipientNetIncrease": "0.999873694499999177 GEN",
+          "fee": {
+            "status": "settled",
+            "paid": "0.001218825600010352 GEN",
+            "refunded": "0.001087270100009529 GEN",
+            "charged": "0.000131555500000823 GEN",
+            "recipientFeePayout": "0.00000525 GEN",
+            "netCharged": "0.000126305500000823 GEN",
+            "externalFeePayouts": [
+              {
+                "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+                "amount": "0.00000525 GEN"
+              }
+            ]
+          },
+          "parentReceipt": {
+            "role": "beneficiary",
+            "method": "withdraw_credit",
+            "value": "0 GEN",
+            "feeDeposit": "0.001218825600010352 GEN",
+            "transactionHash": "0xd9577051ba54a57aec712c7315fd4d16a332b7a454949ba35f9af5af75695e73",
+            "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+            "status": "FINALIZED",
+            "executionResult": "SUCCESS"
+          },
+          "externalMessage": {
+            "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+            "value": "1 GEN"
+          },
+          "childReceipts": [],
+          "childBoundary": "External native transfer executed within finalized parent; no triggered child transaction reported",
+          "creditAfter": "0 GEN",
+          "checkedAt": "2026-10-06T02:51:59.865Z"
+        }
+      },
+      "judgments": [
+        {
+          "attempt": 1,
+          "cover_id": "ec-193d6ea-retry",
+          "definition_digest": "45301e184a495c93837f11fa95f5a991b0dac83679a78824bd151a69d4b8a104",
+          "occurrence_count": 1,
+          "relations": {
+            "access:warp": "SAME_CAUSE"
+          },
+          "source_code": "COMPLETE",
+          "stage": "SETTLED",
+          "supports": {
+            "access": "SUPPORTED",
+            "warp": "SUPPORTED"
+          }
+        }
+      ],
+      "ratifyDeadline": "2026-10-06T02:43:51.121Z",
+      "reviewDeadline": "2026-10-06T02:45:51.121Z",
+      "afterReview": {
+        "attempts": 1,
+        "beneficiary": "0x45ad397c438397a702b53a7499a78d08961d39db",
+        "beneficiary_credit": "1 GEN",
+        "definition_digest": "45301e184a495c93837f11fa95f5a991b0dac83679a78824bd151a69d4b8a104",
+        "deposit": "1 GEN",
+        "event_count": 2,
+        "funder": "0xc495ef51618d03267a1f227afe5b27b38c748272",
+        "funder_credit": "0 GEN",
+        "id": "ec-193d6ea-retry",
+        "occurrence_count": 1,
+        "ratify_deadline": 1791254631,
+        "reserve": "0 GEN",
+        "review_deadline": 1791254751,
+        "status": "SETTLED",
+        "version": "EC_V1",
+        "withdrawn": "0 GEN"
+      },
+      "occurrences": {
+        "count": 1,
+        "cover_id": "ec-193d6ea-retry",
+        "event_roots": {
+          "access": "access",
+          "warp": "access"
+        }
+      },
+      "consensus": [
+        {
+          "leaderOnly": false,
+          "initialValidators": 5,
+          "result": "MAJORITY_AGREE"
+        }
+      ],
+      "finalCover": {
+        "attempts": 1,
+        "beneficiary": "0x45ad397c438397a702b53a7499a78d08961d39db",
+        "beneficiary_credit": "0 GEN",
+        "definition_digest": "45301e184a495c93837f11fa95f5a991b0dac83679a78824bd151a69d4b8a104",
+        "deposit": "1 GEN",
+        "event_count": 2,
+        "funder": "0xc495ef51618d03267a1f227afe5b27b38c748272",
+        "funder_credit": "0 GEN",
+        "id": "ec-193d6ea-retry",
+        "occurrence_count": 1,
+        "ratify_deadline": 1791254631,
+        "reserve": "0 GEN",
+        "review_deadline": 1791254751,
+        "status": "CLOSED",
+        "version": "EC_V1",
+        "withdrawn": "1 GEN"
+      }
+    }
+  },
+  "transactions": {
+    "same:create_cover": {
+      "role": "funder",
+      "method": "create_cover",
+      "value": "2 GEN",
+      "feeDeposit": "0.000754890000010352 GEN",
+      "transactionHash": "0xfa766e42f028cc24bdc6b3f81e3dd603817b273d2a48a486f63decc66980e70b",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "same:ratify_cover": {
+      "role": "beneficiary",
+      "method": "ratify_cover",
+      "value": "0 GEN",
+      "feeDeposit": "0.000754831200010352 GEN",
+      "transactionHash": "0xfb175010599f0325d71e82de8d66ff104b5779052fc9009b4c280deb08d4190b",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "same:review_cover:1": {
+      "role": "funder",
+      "method": "review_cover",
+      "value": "0 GEN",
+      "feeDeposit": "0.000759898800010352 GEN",
+      "transactionHash": "0x72869cf12fc6e76009a9378422473cd52341bbe3b8c2b8962e4a7c1b17685b4b",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "same:withdraw_credit:beneficiary": {
+      "role": "beneficiary",
+      "method": "withdraw_credit",
+      "value": "0 GEN",
+      "feeDeposit": "0.001218825600010352 GEN",
+      "transactionHash": "0x6d06cb1091141b8b3a11aea48b0a63e8c69e1fe6be6bfcd7f1b540db53a5dfcb",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "same:withdraw_credit:funder": {
+      "role": "funder",
+      "method": "withdraw_credit",
+      "value": "0 GEN",
+      "feeDeposit": "0.001218825600010352 GEN",
+      "transactionHash": "0xb90a5b218df74fb896687dfe374d88c15560a05b0ae6f114a6a50e7c50aec700",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "same:close_cover": {
+      "role": "funder",
+      "method": "close_cover",
+      "value": "0 GEN",
+      "feeDeposit": "0.000754831200010352 GEN",
+      "transactionHash": "0xb09dbb7a03538c4ec1a16dd83ce6ac8e01ac6671648c80918bd654810ae0dc39",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "separate:create_cover": {
+      "role": "funder",
+      "method": "create_cover",
+      "value": "2 GEN",
+      "feeDeposit": "0.000754891200010352 GEN",
+      "transactionHash": "0x14803e187a4efead76b80ddf638e31d5c45350572e8e992bba5cbb73703e6f15",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "separate:ratify_cover": {
+      "role": "beneficiary",
+      "method": "ratify_cover",
+      "value": "0 GEN",
+      "feeDeposit": "0.000754831200010352 GEN",
+      "transactionHash": "0x770712ed5814a06b7b675169554ce06b0824753ecbe3f597dfec756b13dcf7cf",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "separate:review_cover:1": {
+      "role": "funder",
+      "method": "review_cover",
+      "value": "0 GEN",
+      "feeDeposit": "0.000760135200010352 GEN",
+      "transactionHash": "0x15d0b6fb9ae594f1c99df308b08e248d41d28e707b9f2595277635028a5dfaf2",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "separate:withdraw_credit:beneficiary": {
+      "role": "beneficiary",
+      "method": "withdraw_credit",
+      "value": "0 GEN",
+      "feeDeposit": "0.001218826800010352 GEN",
+      "transactionHash": "0xe7872192a5548f0e78b578b1d73a1d6819f723168a410f350344b9a0e63e349f",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "separate:close_cover": {
+      "role": "funder",
+      "method": "close_cover",
+      "value": "0 GEN",
+      "feeDeposit": "0.000754831200010352 GEN",
+      "transactionHash": "0xb9067e01086f0d20e51a4f3f231fe9c38ea687b48b02ff21b163b0065bdfb756",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "retry:create_cover": {
+      "role": "funder",
+      "method": "create_cover",
+      "value": "1 GEN",
+      "feeDeposit": "0.000754898400010352 GEN",
+      "transactionHash": "0x8dead4a542e1484058b582a3f5c7ed62f8555abee1dd9fed5914d12887638736",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "retry:ratify_cover": {
+      "role": "beneficiary",
+      "method": "ratify_cover",
+      "value": "0 GEN",
+      "feeDeposit": "0.000754832400010352 GEN",
+      "transactionHash": "0x2156d6d0e068ac66ddbd87288a3a0e6f2657557953f9ab312bf7b41608f86ac2",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "retry:review_cover:1": {
+      "role": "funder",
+      "method": "review_cover",
+      "value": "0 GEN",
+      "feeDeposit": "0.000759908400010352 GEN",
+      "transactionHash": "0xf5322cff3236b1f553d3d80e5c05d16c3230df160392565e0ec15390fb132076",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "retry:withdraw_credit:beneficiary": {
+      "role": "beneficiary",
+      "method": "withdraw_credit",
+      "value": "0 GEN",
+      "feeDeposit": "0.001218825600010352 GEN",
+      "transactionHash": "0xd9577051ba54a57aec712c7315fd4d16a332b7a454949ba35f9af5af75695e73",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    "retry:close_cover": {
+      "role": "funder",
+      "method": "close_cover",
+      "value": "0 GEN",
+      "feeDeposit": "0.000754832400010352 GEN",
+      "transactionHash": "0x893b233b233deff77ac892a9975366e36128756f1f4784b8303f291844fdf724",
+      "contractAddress": "0xE68d3276a00E47474EDfd401690f94505f4FDb6f",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    }
+  },
+  "accounting": {
+    "conserved": true,
+    "credits": "0 GEN",
+    "locked": "0 GEN",
+    "received": "5 GEN",
+    "withdrawn": "5 GEN"
+  },
+  "nativeBalance": "0 GEN",
+  "evidenceIsSanitized": true
+}
