@@ -3,6 +3,7 @@ import {CALL_KEY_UNNAMED,MessageType,encodeExternalMessageFeeParams} from 'genla
 import {safeReceipt} from './receipts.mjs';
 import {settledTransferFee} from './transfer-fees.mjs';
 import {examples} from './examples.mjs';
+import {optionalCover} from './optional-cover.mjs';
 import {ROOT,EVIDENCE,DEPLOYMENT,CHAIN,GEN,context,sourceHash,gen,amount,guard,report,load,save,view,measuredFees,addressArg} from './network.mjs';
 const STATE=path.join(ROOT,'local/lifecycle.json');
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -14,12 +15,7 @@ async function main(){
   const persist=()=>save(STATE,state);
   const read=async(method,args=[])=>JSON.parse(String(await view(publicClient,address,method,args)));
   const credit=async(id,role)=>amount(String(await view(publicClient,address,'get_credit',[id,addressArg(roles[role].address)])));
-  async function maybeCover(id){
-    try{return await read('get_cover',[id]);}catch(error){
-      const text=String(error?.message??'')+' '+String(error?.details??'');
-      guard(text.includes('unknown cover'),'CANONICAL_COVER_READ_FAILED');return null;
-    }
-  }
+  const maybeCover=id=>optionalCover(publicClient,address,id);
   async function waitApplied(pending){
     for(let index=0;index<25;index++){
       const cover=await read('get_cover',[pending.id]);
