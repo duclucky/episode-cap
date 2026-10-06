@@ -1,0 +1,63 @@
+{
+  "command": "node scripts/semantic-smoke.mjs",
+  "at": "2026-10-06T02:20:49.068Z",
+  "network": "Studio Dev",
+  "chainId": 61997,
+  "rpc": "https://studio-next.genlayer.com/api",
+  "sourceSha256": "bde505671761fb7d6249e538553d99d874f7c69044eff76312e74f48e7d4de43",
+  "mode": "UNSIGNED_INSTRUMENTED_CONSTRUCTOR",
+  "productionHelpersUnchanged": true,
+  "noKeysLoaded": true,
+  "noTransactionSubmitted": true,
+  "noGENSent": true,
+  "executionResult": "SUCCESS",
+  "sources": [
+    {
+      "index": 0,
+      "status": 200,
+      "length": 302841,
+      "digest": "547aee5894b306500ff1165638e08ad0b071268ad836fd1e56fb5d55c40ba4ff",
+      "published": "2025-06-12",
+      "textLength": 28840,
+      "excerptPresent": [
+        true,
+        true
+      ]
+    },
+    {
+      "index": 1,
+      "status": 200,
+      "length": 307076,
+      "digest": "604155db5bea9e0edf11e124262747515d48cef06c1123675c6735e466727819",
+      "published": "2025-07-15",
+      "textLength": 24742,
+      "excerptPresent": [
+        true,
+        true
+      ]
+    }
+  ],
+  "meanings": [
+    {
+      "index": 0,
+      "stage": "JUDGED",
+      "sourceCode": "",
+      "complete": true,
+      "relation": "SAME_CAUSE",
+      "occurrenceCount": 1
+    },
+    {
+      "index": 1,
+      "stage": "JUDGED",
+      "sourceCode": "",
+      "complete": true,
+      "relation": "SEPARATE_CAUSES",
+      "occurrenceCount": 2
+    }
+  ],
+  "categories": [
+    "nondet"
+  ],
+  "passed": true,
+  "limitation": "Leader simulation of production helpers; not deployed or finalized validator consensus."
+}

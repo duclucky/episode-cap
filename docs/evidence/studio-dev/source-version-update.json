@@ -1,0 +1,16 @@
+{
+  "network": "Studio Dev",
+  "chainId": 61997,
+  "observedAt": "2026-10-06T02:18:58.650Z",
+  "mode": "UNSIGNED_INSTRUMENTED_CONSTRUCTOR",
+  "sourceUrl": "https://blog.cloudflare.com/cloudflare-service-outage-june-12-2025/",
+  "previousDigest": "4f927e241c09ce8a9124430b31d5e6ac792e76623c11250d5baeef3e2ff5ecbc",
+  "currentDigest": "547aee5894b306500ff1165638e08ad0b071268ad836fd1e56fb5d55c40ba4ff",
+  "publicationDate": "2025-06-12",
+  "observedResult": "RETRYABLE",
+  "sourceCode": "DIGEST_MISMATCH",
+  "noTransactionSubmitted": true,
+  "noGENSent": true,
+  "action": "Refreshed only not-yet-ratified demo definitions after authoritative acquisition; contract checks unchanged",
+  "followUp": ["semantic-smoke-pass-1.json", "semantic-smoke-pass-2.json"]
+}
