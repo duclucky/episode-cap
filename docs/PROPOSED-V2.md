@@ -1,9 +1,11 @@
 # EC_V2 evidence policy - owner approved
 
 The first revision is abandoned and recovered to zero native balance. There is
-no active replacement deployment yet. The owner approved this concrete policy
-and replacement deployment on 2026-10-06 ("duyet"). Production promotion is
-complete; finalized replacement lifecycle evidence is still pending.
+an active EC_V2 replacement at
+`0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6`. The owner approved this concrete
+policy and replacement deployment on 2026-10-06 ("duyet"). All five signed
+replacement lifecycle cases pass: 7 GEN received and withdrawn, zero liabilities
+and zero native balance. See [lifecycle evidence](evidence/studio-dev/lifecycle.json).
 
 ## Concrete change
 

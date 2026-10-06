@@ -70,8 +70,9 @@ async function main(){
     const id=item.id;let cover=await maybeCover(id);
     if(!cover){
       guard(!recovery,'RECOVERY_CANNOT_CREATE_OR_FUND_NEW_COVER');
-      const now=Date.now(),duration=name==='expiry'?60000:scenario.count?7200000:240000;
-      item.ratifyDeadline=new Date(now+(name==='expiry'?30000:scenario.count?3600000:120000)).toISOString();
+      // Real Studio finality takes minutes; leave room for both bounded reviews.
+      const now=Date.now(),duration=name==='expiry'?60000:scenario.count?7200000:600000;
+      item.ratifyDeadline=new Date(now+(name==='expiry'?30000:scenario.count?3600000:300000)).toISOString();
       item.reviewDeadline=new Date(now+duration).toISOString();persist();
       await write(name,'funder','create_cover',[id,addressArg(roles.beneficiary.address),JSON.stringify(scenario.events),item.ratifyDeadline,item.reviewDeadline],scenario.deposit);
       cover=await read('get_cover',[id]);
@@ -100,6 +101,7 @@ async function main(){
         guard(cover.status==='SETTLED'&&cover.occurrence_count===scenario.count&&await credit(id,'beneficiary')===BigInt(scenario.count)*GEN&&await credit(id,'funder')===scenario.deposit-BigInt(scenario.count)*GEN,'CAUSAL_CREDIT_EXAMPLE_UNEXPECTED');
       }else{
         guard(cover.status==='RETRYABLE'&&cover.reserve===gen(scenario.deposit)&&cover.funder_credit==='0 GEN'&&cover.beneficiary_credit==='0 GEN','NONPENALIZING_EXAMPLE_UNEXPECTED');
+        if(name==='retry')guard(item.judgments.length===2&&item.judgments.every(x=>x.source_code==='COMPLETE'&&x.supports.access==='UNVERIFIABLE'&&x.relations['access:warp']==='UNVERIFIABLE'),'AUTHENTICATED_UNSUPPORTED_MEANING_REQUIRED');
         if(name==='digest')guard(item.judgments.every(x=>x.source_code==='DIGEST_MISMATCH'),'EXACT_SOURCE_VERSION_REJECTION_REQUIRED');
       }
       item.judgmentVerified=true;persist();console.log(JSON.stringify({stage:'JUDGMENT_PROVED',case:name,status:cover.status,occurrences:cover.occurrence_count,attempts:cover.attempts,consensus:item.consensus}));

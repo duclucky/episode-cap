@@ -1,0 +1,14 @@
+{
+  "command": "npm run check",
+  "sourceSha256": "8b1e0311e3ff2bc63cdf5d94f92603d8eb882c54d440c02747957ea0a50df825",
+  "lintChecks": 3,
+  "recognizedContract": "EpisodeCap",
+  "methods": 12,
+  "views": 6,
+  "writes": 6,
+  "directTests": 107,
+  "nodeTests": 21,
+  "nodePassed": 21,
+  "nodeFailed": 0,
+  "checkPassed": true
+}

@@ -7,13 +7,17 @@ code rejects inconsistent partitions and derives fixed credit and refund amounts
 
 Category: Intelligent Contracts. No user-facing app.
 
-Status: local implementation passes lint and 101 direct tests. Unsigned Studio
-Dev constructor/schema and production semantic helper simulations succeeded.
+Status: owner-approved EC_V2 passes lint, 107 direct tests and 21 script/receipt
+tests. The replacement deployment is FINALIZED/SUCCESS on Studio Dev; all five
+signed lifecycle cases pass with 7 GEN received and withdrawn and zero native
+balance. Unsigned exact-source constructor/schema
+and four production semantic regressions succeeded.
 The workspace precheck storage incompatibility was corrected with regression
 tests, preserving rejection of missing or fake decorators. The first deployed
 revision failed an adversarial event-support case, was fully recovered to zero
-liability and is abandoned. Replacement verification, public CI and submission
-readiness remain pending; see [verification and limits](docs/VERIFICATION.md).
+liability and is abandoned. Public CI remains pending; strict historical
+test-first compliance cannot be certified. See
+[verification and limits](docs/VERIFICATION.md).
 
 See [specification](docs/README.md) for the public interface, trust boundary,
 authority, settlement invariants and adversarial acceptance cases.
@@ -25,8 +29,8 @@ validators must independently acquire the exact provider-origin evidence.
 
 ## Consensus and reuse
 
-Each validator independently fetches the locked provider pages, checks raw-byte
-hashes, canonical URLs, publication dates and excerpt bindings, then judges
+Each validator independently fetches the locked provider pages, checks exact
+review-text hashes, canonical URLs, publication dates and excerpt bindings, then judges
 support for every selected event and the causal relation of every unordered
 pair. Equivalence compares the normalized **meaning** of those complete vectors;
 different explanations are permitted, opposing causal decisions are rejected.
@@ -47,7 +51,8 @@ are proposed integrations, not existing adoption.
 | close_cover | Funder closes only a terminal cover with zero liabilities |
 
 Views: get_cover, get_event, get_attempt, get_occurrences, get_credit and
-get_accounting. See the specification for exact argument types and time bounds.
+get_accounting. See the specification for exact argument types and time bounds,
+and [integration sequence](docs/INTEGRATION.md) for downstream use.
 
 ## Local checks
 
@@ -56,15 +61,45 @@ Use Python 3.12, install `requirements-dev.txt` into `.venv`, run `npm ci`, then
 checks, receipt/fee parser tests and deployment script syntax checks. Local
 success does not prove deployed or finalized Studio Dev execution.
 
-## Worked example - expected, not finalized evidence
+## Worked example - finalized real result
 
-The funder locks 2 GEN; the beneficiary accepts two provider-reported events.
-If validators determine both share one causal outage, the beneficiary receives
-1 GEN credit and the funder receives 1 GEN residual credit. If there are two
-validated separate causes, the beneficiary receives 2 GEN credit. A malformed,
-unverifiable or hash-mismatched report never opens a payment path; unresolved
-funds remain available for expiry refund. Actual withdrawals require finalized
-receipts, exact native balance decreases and fee-adjusted recipient evidence.
+Cover `ec-8c462ac-same` locked 2 GEN for the June 12 provider-reported Access
+login failures and WARP registration failures from `scripts/examples.mjs`.
+The named beneficiary ratified its exact definition digest. `review_cover`
+finalized with five validators, MAJORITY_AGREE, both events SUPPORTED and
+`access:warp = SAME_CAUSE`. `get_occurrences` returned one causal occurrence.
+The beneficiary and funder each received 1 GEN credit and withdrew 1 GEN.
+Every withdrawal reduced native contract balance by exactly 1 GEN; recipient
+delta plus settled net fee equaled 1 GEN. The cover is CLOSED with zero credits.
+
+| Real case | Deposit | Finalized judgment/recovery | Withdrawal |
+| --- | --- | --- | --- |
+| Same causal outage | 2 GEN | 1 occurrence; fixed 1 GEN to each party | 1 GEN + 1 GEN |
+| Explicitly non-causal events | 2 GEN | 2 occurrences | 2 GEN beneficiary |
+| Unsupported compensation proposition | 1 GEN | Two authenticated-source UNVERIFIABLE reviews; no credit until expiry refund | 1 GEN funder |
+| No ratification | 1 GEN | No review; expiry refund | 1 GEN funder |
+| Wrong reviewed-text digest | 1 GEN | DIGEST_MISMATCH, no semantic judgment/credit; expiry refund | 1 GEN funder |
+
+All five covers are CLOSED. Canonical accounting: received 7 GEN, withdrawn
+7 GEN, reserve/credits 0 GEN; native balance 0 GEN. Source, transaction,
+consensus, canonical-view and exact transfer evidence are in the
+[sanitized lifecycle](docs/evidence/studio-dev/lifecycle.json).
+
+## Active deployment
+
+NETWORK = Studio Dev, chain ID 61997.
+CONTRACT_ADDRESS = `0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6`.
+Deployment **Result: SUCCESS**, Status: FINALIZED.
+
+[Contract explorer](https://explorer-studio-dev.genlayer.com/address/0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6)
+| [Deploy transaction](https://explorer-studio-dev.genlayer.com/transactions/0xf636067e3b0fde4216c91c9ccac123b67562b1f2ef92ef3d42772e3f65ba9e21)
+| [Deployment identity](docs/evidence/studio-dev/deployment.json).
+
+EC_V2 binds source commit `8c462ac` and the pinned
+`py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng` runner.
+The live same-cause case finalized one occurrence, fixed 1 GEN credits to each
+party, exact 1 GEN native decreases for both withdrawals and zero-liability
+closure. All five replacement cases now pass the full signed lifecycle.
 
 ## Archived deployment - do not fund
 

@@ -1,0 +1,48 @@
+{
+  "network": "Studio Dev",
+  "chainId": 61997,
+  "rpc": "https://studio-next.genlayer.com/api",
+  "contract": "EpisodeCap",
+  "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+  "contractVersion": "EC_V2",
+  "depends": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng",
+  "sourceCommit": "8c462ac90e94f9d5e848eaf3a135978dbaec405e",
+  "sourceSha256": "8b1e0311e3ff2bc63cdf5d94f92603d8eb882c54d440c02747957ea0a50df825",
+  "sourceDirtyAtDeployment": false,
+  "deployedAt": "2026-10-06T08:05:00.381Z",
+  "active": true,
+  "status": "FINALIZED",
+  "deploy": {
+    "transactionHash": "0xf636067e3b0fde4216c91c9ccac123b67562b1f2ef92ef3d42772e3f65ba9e21",
+    "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+    "status": "FINALIZED",
+    "executionResult": "SUCCESS"
+  },
+  "feeDeposit": "0.100000000000010352 GEN",
+  "explorerUrl": "https://explorer-studio-dev.genlayer.com/address/0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+  "deployTxUrl": "https://explorer-studio-dev.genlayer.com/transactions/0xf636067e3b0fde4216c91c9ccac123b67562b1f2ef92ef3d42772e3f65ba9e21",
+  "schemaMethods": [
+    "close_cover",
+    "create_cover",
+    "expire_cover",
+    "get_accounting",
+    "get_attempt",
+    "get_cover",
+    "get_credit",
+    "get_event",
+    "get_occurrences",
+    "ratify_cover",
+    "review_cover",
+    "withdraw_credit"
+  ],
+  "smoke": {
+    "accounting": {
+      "conserved": true,
+      "credits": "0 GEN",
+      "locked": "0 GEN",
+      "received": "0 GEN",
+      "withdrawn": "0 GEN"
+    }
+  },
+  "evidenceIsSanitized": true
+}

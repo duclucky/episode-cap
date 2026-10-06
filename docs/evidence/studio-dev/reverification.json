@@ -1,0 +1,798 @@
+{
+  "command": "node scripts/verify.mjs",
+  "at": "2026-10-06T08:48:39.879Z",
+  "mode": "READ_ONLY",
+  "rpcIntervalMs": 2200,
+  "network": "Studio Dev",
+  "chainId": 61997,
+  "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+  "sourceSha256": "8b1e0311e3ff2bc63cdf5d94f92603d8eb882c54d440c02747957ea0a50df825",
+  "methodCount": 12,
+  "cases": {
+    "same": {
+      "cover": {
+        "attempts": 1,
+        "beneficiary": "0x45ad397c438397a702b53a7499a78d08961d39db",
+        "beneficiary_credit": "0 GEN",
+        "definition_digest": "c9bf875477665454bff722d310266f9275260fdd9233ced54e2914672ad8d685",
+        "deposit": "2 GEN",
+        "event_count": 2,
+        "funder": "0xc495ef51618d03267a1f227afe5b27b38c748272",
+        "funder_credit": "0 GEN",
+        "id": "ec-8c462ac-same",
+        "occurrence_count": 1,
+        "ratify_deadline": 1791277508,
+        "reserve": "0 GEN",
+        "review_deadline": 1791281108,
+        "status": "CLOSED",
+        "version": "EC_V2",
+        "withdrawn": "2 GEN"
+      },
+      "events": [
+        {
+          "event": "Access identity based login failures in the June 12 outage",
+          "excerpt": "Access failed 100% of identity based logins",
+          "id": "access",
+          "report_date": "2025-06-12",
+          "source_digest": "a9a51d80d491cd5d62fcdda143c71ccd883cb98c3bfbb2bfbc46ed0d29d7853d",
+          "source_url": "https://blog.cloudflare.com/cloudflare-service-outage-june-12-2025/"
+        },
+        {
+          "event": "Cloudflare WARP team observed failing registrations of new devices.",
+          "excerpt": "Cloudflare WARP team begins to see registrations of new devices fail",
+          "id": "warp",
+          "report_date": "2025-06-12",
+          "source_digest": "a9a51d80d491cd5d62fcdda143c71ccd883cb98c3bfbb2bfbc46ed0d29d7853d",
+          "source_url": "https://blog.cloudflare.com/cloudflare-service-outage-june-12-2025/"
+        }
+      ],
+      "occurrences": {
+        "count": 1,
+        "cover_id": "ec-8c462ac-same",
+        "event_roots": {
+          "access": "access",
+          "warp": "access"
+        }
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "cover_id": "ec-8c462ac-same",
+          "definition_digest": "c9bf875477665454bff722d310266f9275260fdd9233ced54e2914672ad8d685",
+          "occurrence_count": 1,
+          "relations": {
+            "access:warp": "SAME_CAUSE"
+          },
+          "source_code": "COMPLETE",
+          "stage": "SETTLED",
+          "supports": {
+            "access": "SUPPORTED",
+            "warp": "SUPPORTED"
+          }
+        }
+      ]
+    },
+    "separate": {
+      "cover": {
+        "attempts": 1,
+        "beneficiary": "0x45ad397c438397a702b53a7499a78d08961d39db",
+        "beneficiary_credit": "0 GEN",
+        "definition_digest": "8a43f02e6f5b4f42c1b96887a63a27e5fd1357856075de061ef76575d9d9f412",
+        "deposit": "2 GEN",
+        "event_count": 2,
+        "funder": "0xc495ef51618d03267a1f227afe5b27b38c748272",
+        "funder_credit": "0 GEN",
+        "id": "ec-8c462ac-separate",
+        "occurrence_count": 2,
+        "ratify_deadline": 1791277799,
+        "reserve": "0 GEN",
+        "review_deadline": 1791281399,
+        "status": "CLOSED",
+        "version": "EC_V2",
+        "withdrawn": "2 GEN"
+      },
+      "events": [
+        {
+          "event": "1.1.1.1 resolver outage from withdrawn routes on July 14",
+          "excerpt": "DNS traffic to 1.1.1.1 Resolver service begins to drop globally",
+          "id": "resolver",
+          "report_date": "2025-07-15",
+          "source_digest": "0b0f1b7a9cc6581b97464664ef58b44e7007cf4165668d4384c194907b14f139",
+          "source_url": "https://blog.cloudflare.com/cloudflare-1-1-1-1-incident-on-july-14-2025/"
+        },
+        {
+          "event": "BGP origin hijack visible at 21:54 UTC on July 14, explicitly not the resolver outage cause",
+          "excerpt": "BGP origin hijack of 1.1.1.0/24",
+          "id": "bgp",
+          "report_date": "2025-07-15",
+          "source_digest": "0b0f1b7a9cc6581b97464664ef58b44e7007cf4165668d4384c194907b14f139",
+          "source_url": "https://blog.cloudflare.com/cloudflare-1-1-1-1-incident-on-july-14-2025/"
+        }
+      ],
+      "occurrences": {
+        "count": 2,
+        "cover_id": "ec-8c462ac-separate",
+        "event_roots": {
+          "bgp": "bgp",
+          "resolver": "resolver"
+        }
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "cover_id": "ec-8c462ac-separate",
+          "definition_digest": "8a43f02e6f5b4f42c1b96887a63a27e5fd1357856075de061ef76575d9d9f412",
+          "occurrence_count": 2,
+          "relations": {
+            "resolver:bgp": "SEPARATE_CAUSES"
+          },
+          "source_code": "COMPLETE",
+          "stage": "SETTLED",
+          "supports": {
+            "bgp": "SUPPORTED",
+            "resolver": "SUPPORTED"
+          }
+        }
+      ]
+    },
+    "retry": {
+      "cover": {
+        "attempts": 2,
+        "beneficiary": "0x45ad397c438397a702b53a7499a78d08961d39db",
+        "beneficiary_credit": "0 GEN",
+        "definition_digest": "9afa97c9fd6a0e19f5327ef00e8ddb96cc7b087f59e8edd107298fd343e4bf36",
+        "deposit": "1 GEN",
+        "event_count": 2,
+        "funder": "0xc495ef51618d03267a1f227afe5b27b38c748272",
+        "funder_credit": "0 GEN",
+        "id": "ec-8c462ac-retry",
+        "occurrence_count": 0,
+        "ratify_deadline": 1791274729,
+        "reserve": "0 GEN",
+        "review_deadline": 1791275029,
+        "status": "CLOSED",
+        "version": "EC_V2",
+        "withdrawn": "1 GEN"
+      },
+      "events": [
+        {
+          "event": "Cloudflare confirms an authenticated compensation transfer to this beneficiary in the June report.",
+          "excerpt": "Access failed 100% of identity based logins",
+          "id": "access",
+          "report_date": "2025-06-12",
+          "source_digest": "a9a51d80d491cd5d62fcdda143c71ccd883cb98c3bfbb2bfbc46ed0d29d7853d",
+          "source_url": "https://blog.cloudflare.com/cloudflare-service-outage-june-12-2025/"
+        },
+        {
+          "event": "WARP device registrations failed.",
+          "excerpt": "Cloudflare WARP team begins to see registrations of new devices fail",
+          "id": "warp",
+          "report_date": "2025-06-12",
+          "source_digest": "a9a51d80d491cd5d62fcdda143c71ccd883cb98c3bfbb2bfbc46ed0d29d7853d",
+          "source_url": "https://blog.cloudflare.com/cloudflare-service-outage-june-12-2025/"
+        }
+      ],
+      "occurrences": {
+        "count": 0,
+        "cover_id": "ec-8c462ac-retry",
+        "event_roots": {}
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "cover_id": "ec-8c462ac-retry",
+          "definition_digest": "9afa97c9fd6a0e19f5327ef00e8ddb96cc7b087f59e8edd107298fd343e4bf36",
+          "occurrence_count": 0,
+          "relations": {
+            "access:warp": "UNVERIFIABLE"
+          },
+          "source_code": "COMPLETE",
+          "stage": "RETRYABLE",
+          "supports": {
+            "access": "UNVERIFIABLE",
+            "warp": "SUPPORTED"
+          }
+        },
+        {
+          "attempt": 2,
+          "cover_id": "ec-8c462ac-retry",
+          "definition_digest": "9afa97c9fd6a0e19f5327ef00e8ddb96cc7b087f59e8edd107298fd343e4bf36",
+          "occurrence_count": 0,
+          "relations": {
+            "access:warp": "UNVERIFIABLE"
+          },
+          "source_code": "COMPLETE",
+          "stage": "RETRYABLE",
+          "supports": {
+            "access": "UNVERIFIABLE",
+            "warp": "SUPPORTED"
+          }
+        }
+      ]
+    },
+    "expiry": {
+      "cover": {
+        "attempts": 0,
+        "beneficiary": "0x45ad397c438397a702b53a7499a78d08961d39db",
+        "beneficiary_credit": "0 GEN",
+        "definition_digest": "d2e494523976343fccea139a3cdff98afe2aab098cdc1761aa35c4265b219fae",
+        "deposit": "1 GEN",
+        "event_count": 2,
+        "funder": "0xc495ef51618d03267a1f227afe5b27b38c748272",
+        "funder_credit": "0 GEN",
+        "id": "ec-8c462ac-expiry",
+        "occurrence_count": 0,
+        "ratify_deadline": 1791275220,
+        "reserve": "0 GEN",
+        "review_deadline": 1791275250,
+        "status": "CLOSED",
+        "version": "EC_V2",
+        "withdrawn": "1 GEN"
+      },
+      "events": [
+        {
+          "event": "Access identity based login failures in the June 12 outage",
+          "excerpt": "Access failed 100% of identity based logins",
+          "id": "access",
+          "report_date": "2025-06-12",
+          "source_digest": "a9a51d80d491cd5d62fcdda143c71ccd883cb98c3bfbb2bfbc46ed0d29d7853d",
+          "source_url": "https://blog.cloudflare.com/cloudflare-service-outage-june-12-2025/"
+        },
+        {
+          "event": "Cloudflare WARP team observed failing registrations of new devices.",
+          "excerpt": "Cloudflare WARP team begins to see registrations of new devices fail",
+          "id": "warp",
+          "report_date": "2025-06-12",
+          "source_digest": "a9a51d80d491cd5d62fcdda143c71ccd883cb98c3bfbb2bfbc46ed0d29d7853d",
+          "source_url": "https://blog.cloudflare.com/cloudflare-service-outage-june-12-2025/"
+        }
+      ],
+      "occurrences": {
+        "count": 0,
+        "cover_id": "ec-8c462ac-expiry",
+        "event_roots": {}
+      },
+      "attempts": []
+    },
+    "digest": {
+      "cover": {
+        "attempts": 1,
+        "beneficiary": "0x45ad397c438397a702b53a7499a78d08961d39db",
+        "beneficiary_credit": "0 GEN",
+        "definition_digest": "c3b8d7193e0485da6bb8f923c9c0c8596c670e044c9331a86f5b0f83742652f3",
+        "deposit": "1 GEN",
+        "event_count": 2,
+        "funder": "0xc495ef51618d03267a1f227afe5b27b38c748272",
+        "funder_credit": "0 GEN",
+        "id": "ec-8c462ac-digest",
+        "occurrence_count": 0,
+        "ratify_deadline": 1791275683,
+        "reserve": "0 GEN",
+        "review_deadline": 1791275983,
+        "status": "CLOSED",
+        "version": "EC_V2",
+        "withdrawn": "1 GEN"
+      },
+      "events": [
+        {
+          "event": "Access identity based login failures in the June 12 outage",
+          "excerpt": "Access failed 100% of identity based logins",
+          "id": "access",
+          "report_date": "2025-06-12",
+          "source_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+          "source_url": "https://blog.cloudflare.com/cloudflare-service-outage-june-12-2025/"
+        },
+        {
+          "event": "Cloudflare WARP team observed failing registrations of new devices.",
+          "excerpt": "Cloudflare WARP team begins to see registrations of new devices fail",
+          "id": "warp",
+          "report_date": "2025-06-12",
+          "source_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+          "source_url": "https://blog.cloudflare.com/cloudflare-service-outage-june-12-2025/"
+        }
+      ],
+      "occurrences": {
+        "count": 0,
+        "cover_id": "ec-8c462ac-digest",
+        "event_roots": {}
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "cover_id": "ec-8c462ac-digest",
+          "definition_digest": "c3b8d7193e0485da6bb8f923c9c0c8596c670e044c9331a86f5b0f83742652f3",
+          "occurrence_count": 0,
+          "relations": {},
+          "source_code": "DIGEST_MISMATCH",
+          "stage": "RETRYABLE",
+          "supports": {}
+        }
+      ]
+    }
+  },
+  "receipts": [
+    {
+      "step": "deploy",
+      "transactionHash": "0xf636067e3b0fde4216c91c9ccac123b67562b1f2ef92ef3d42772e3f65ba9e21",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "same:create_cover",
+      "transactionHash": "0x682684f490993758c3efe31c1440523df3f7adbeab4f9c9ec3281dfd2a38d06d",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "same:ratify_cover",
+      "transactionHash": "0x3167dca7a7be57e26554f42cc6fb8b402043db3b1a4c5b98d6aceae6332d3d4a",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "same:review_cover:1",
+      "transactionHash": "0x859b1334e7412090f0d36509cf666ebb70ed8769aafbfa6fbd9a6ab832e7df76",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS",
+      "consensus": {
+        "leaderOnly": false,
+        "initialValidators": 5,
+        "result": "MAJORITY_AGREE"
+      }
+    },
+    {
+      "step": "same:withdraw_credit:beneficiary",
+      "transactionHash": "0x83c9ab3328f8132c6e08f77d918f01775685e1aa45fa8be699af5602030dfabb",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "same:withdraw_credit:funder",
+      "transactionHash": "0x9860cdf03c6bb50ab486225e73e50e4d5cc351747c97d114dca6d32a5c355739",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "same:close_cover",
+      "transactionHash": "0x032ce8e58adef063ca0b29362357d833b84799307bd51d2199b05c253b099325",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "separate:create_cover",
+      "transactionHash": "0x1e5e74575ced8080df65270d3286d9d8e5ad786b5bf7917fe5901af164ea469b",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "separate:ratify_cover",
+      "transactionHash": "0xe16bd14139cf6e65a2ebb9f7debcc8fabcbcefb519ffb4599f2be9cac8e444d7",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "separate:review_cover:1",
+      "transactionHash": "0x04d152e6ce92f3349ae0ddda3744b2424c75042fa025341f864227ac08f42438",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS",
+      "consensus": {
+        "leaderOnly": false,
+        "initialValidators": 5,
+        "result": "MAJORITY_AGREE"
+      }
+    },
+    {
+      "step": "separate:withdraw_credit:beneficiary",
+      "transactionHash": "0x3b454d758776ea3d65f137a668c5eda637262dfe91e6b3d2e846ceed47cbf744",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "separate:close_cover",
+      "transactionHash": "0x13e226e5e5c9ed1149b2fc23ac77f7f0a8ae0890cc3c5ea4e28da537f1081267",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "retry:create_cover",
+      "transactionHash": "0xe6c0120ae4253ce89d76765e9e3e9084487c690c7f3cf4e7b9540e6bc2a7cf36",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "retry:ratify_cover",
+      "transactionHash": "0xe8e71c2deced98cc121ceddb04fbd353f5ca5955365cacc5e0dccc7b52c6df38",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "retry:review_cover:1",
+      "transactionHash": "0x6124ff33761ffe8de2bf661073157e6a9c40c6ed52b87456c9a30be89cdb56b9",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS",
+      "consensus": {
+        "leaderOnly": false,
+        "initialValidators": 5,
+        "result": "MAJORITY_AGREE"
+      }
+    },
+    {
+      "step": "retry:review_cover:2",
+      "transactionHash": "0x1d63211f8c188ce26b1b214990e1ba92b8dd7c8da5e21174da1c2f6bbba17b0f",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS",
+      "consensus": {
+        "leaderOnly": false,
+        "initialValidators": 5,
+        "result": "MAJORITY_AGREE"
+      }
+    },
+    {
+      "step": "retry:expire_cover",
+      "transactionHash": "0xf4e86c2e5afcba1e0d6884af9d8a21568952277a30eb189f34681e772f39f7f6",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "retry:withdraw_credit:funder",
+      "transactionHash": "0x273b4df0c65b80774456f1c20d21c62fbc2872c59e90da168b813db923647f39",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "retry:close_cover",
+      "transactionHash": "0xdcbeac0bedca34fe9b8fb0cb25c9839712016de8a83f6031a353e00bd5eafeda",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "expiry:create_cover",
+      "transactionHash": "0xa10bdb0b21d2d15adf6711cbc1ba47efdee9efac649bd04f18397654476e5876",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "expiry:expire_cover",
+      "transactionHash": "0xf17e767fad0597c8fa78d964f9d0adcc06230a793b3f871844d8efdd09f00269",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "expiry:withdraw_credit:funder",
+      "transactionHash": "0x72a2eeb28897d84953f7f9b21551e89f808ef577ade9f2206bbf1b32c4863605",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "expiry:close_cover",
+      "transactionHash": "0x373d794a7a2f0c307ddc0d0981c9b26e088dafda676090a832a75de9d961e6dc",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "digest:create_cover",
+      "transactionHash": "0x4b2ce9127316c38251634da41db83f122d638c51f2043b5d0c97e034cf8d56ff",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "digest:ratify_cover",
+      "transactionHash": "0xe2bea407c0a0434c08fe18212cc70c05402b92eb7f655ffe8a2248d25ad3c93b",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "digest:review_cover:1",
+      "transactionHash": "0xe1ae2289e3fa239cbb6b4ab7e7679e8f50d984f5a4b14382cf4faacd2dc47020",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS",
+      "consensus": {
+        "leaderOnly": false,
+        "initialValidators": 5,
+        "result": "MAJORITY_AGREE"
+      }
+    },
+    {
+      "step": "digest:expire_cover",
+      "transactionHash": "0x36d28cd0ac4cffc87e4d147e12d65767061892d0dd3607425b99f6ae5a07912f",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "digest:withdraw_credit:funder",
+      "transactionHash": "0x139a140053f81b16eecf749dfb8523d85b2dee3033a114a5a8226b54ab6d6772",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    },
+    {
+      "step": "digest:close_cover",
+      "transactionHash": "0xd1270d8d1e3a8e823566fe6deadca73a265a8f35a923f8575d59bde243f8ecb6",
+      "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "status": "FINALIZED",
+      "executionResult": "SUCCESS"
+    }
+  ],
+  "withdrawals": [
+    {
+      "case": "same",
+      "role": "beneficiary",
+      "parentReceipt": {
+        "transactionHash": "0x83c9ab3328f8132c6e08f77d918f01775685e1aa45fa8be699af5602030dfabb",
+        "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+        "status": "FINALIZED",
+        "executionResult": "SUCCESS"
+      },
+      "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+      "amount": "1 GEN",
+      "nativeBefore": "2 GEN",
+      "nativeAfter": "1 GEN",
+      "nativeDecrease": "1 GEN",
+      "recipientBefore": "25.65798033566663248 GEN",
+      "recipientAfter": "26.657854030166631657 GEN",
+      "recipientNetIncrease": "0.999873694499999177 GEN",
+      "fee": {
+        "status": "settled",
+        "paid": "0.001218825600010352 GEN",
+        "refunded": "0.001087270100009529 GEN",
+        "charged": "0.000131555500000823 GEN",
+        "recipientFeePayout": "0.00000525 GEN",
+        "netCharged": "0.000126305500000823 GEN",
+        "externalFeePayouts": [
+          {
+            "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+            "amount": "0.00000525 GEN"
+          }
+        ]
+      },
+      "equation": "recipient net increase + paid fee - total refunded - separate recipient external fee payout = transfer amount",
+      "message": {
+        "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+        "value": "1 GEN"
+      },
+      "childReceipts": [],
+      "childBoundary": "External native transfer executed within finalized parent; no triggered child transaction reported"
+    },
+    {
+      "case": "same",
+      "role": "funder",
+      "parentReceipt": {
+        "transactionHash": "0x9860cdf03c6bb50ab486225e73e50e4d5cc351747c97d114dca6d32a5c355739",
+        "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+        "status": "FINALIZED",
+        "executionResult": "SUCCESS"
+      },
+      "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+      "amount": "1 GEN",
+      "nativeBefore": "1 GEN",
+      "nativeAfter": "0 GEN",
+      "nativeDecrease": "1 GEN",
+      "recipientBefore": "43.286347590332873989 GEN",
+      "recipientAfter": "44.286221284832873166 GEN",
+      "recipientNetIncrease": "0.999873694499999177 GEN",
+      "fee": {
+        "status": "settled",
+        "paid": "0.001218825600010352 GEN",
+        "refunded": "0.001087270100009529 GEN",
+        "charged": "0.000131555500000823 GEN",
+        "recipientFeePayout": "0.00000525 GEN",
+        "netCharged": "0.000126305500000823 GEN",
+        "externalFeePayouts": [
+          {
+            "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+            "amount": "0.00000525 GEN"
+          }
+        ]
+      },
+      "equation": "recipient net increase + paid fee - total refunded - separate recipient external fee payout = transfer amount",
+      "message": {
+        "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+        "value": "1 GEN"
+      },
+      "childReceipts": [],
+      "childBoundary": "External native transfer executed within finalized parent; no triggered child transaction reported"
+    },
+    {
+      "case": "separate",
+      "role": "beneficiary",
+      "parentReceipt": {
+        "transactionHash": "0x3b454d758776ea3d65f137a668c5eda637262dfe91e6b3d2e846ceed47cbf744",
+        "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+        "status": "FINALIZED",
+        "executionResult": "SUCCESS"
+      },
+      "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+      "amount": "2 GEN",
+      "nativeBefore": "2 GEN",
+      "nativeAfter": "0 GEN",
+      "nativeDecrease": "2 GEN",
+      "recipientBefore": "26.657775401666630834 GEN",
+      "recipientAfter": "28.657649095916630011 GEN",
+      "recipientNetIncrease": "1.999873694249999177 GEN",
+      "fee": {
+        "status": "settled",
+        "paid": "0.001218826800010352 GEN",
+        "refunded": "0.001087271050009529 GEN",
+        "charged": "0.000131555750000823 GEN",
+        "recipientFeePayout": "0.00000525 GEN",
+        "netCharged": "0.000126305750000823 GEN",
+        "externalFeePayouts": [
+          {
+            "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+            "amount": "0.00000525 GEN"
+          }
+        ]
+      },
+      "equation": "recipient net increase + paid fee - total refunded - separate recipient external fee payout = transfer amount",
+      "message": {
+        "recipient": "0x45aD397c438397A702B53a7499a78D08961D39Db",
+        "value": "2 GEN"
+      },
+      "childReceipts": [],
+      "childBoundary": "External native transfer executed within finalized parent; no triggered child transaction reported"
+    },
+    {
+      "case": "retry",
+      "role": "funder",
+      "parentReceipt": {
+        "transactionHash": "0x273b4df0c65b80774456f1c20d21c62fbc2872c59e90da168b813db923647f39",
+        "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+        "status": "FINALIZED",
+        "executionResult": "SUCCESS"
+      },
+      "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+      "amount": "1 GEN",
+      "nativeBefore": "1 GEN",
+      "nativeAfter": "0 GEN",
+      "nativeDecrease": "1 GEN",
+      "recipientBefore": "41.285590683582866582 GEN",
+      "recipientAfter": "42.285464377832865759 GEN",
+      "recipientNetIncrease": "0.999873694249999177 GEN",
+      "fee": {
+        "status": "settled",
+        "paid": "0.001218826800010352 GEN",
+        "refunded": "0.001087271050009529 GEN",
+        "charged": "0.000131555750000823 GEN",
+        "recipientFeePayout": "0.00000525 GEN",
+        "netCharged": "0.000126305750000823 GEN",
+        "externalFeePayouts": [
+          {
+            "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+            "amount": "0.00000525 GEN"
+          }
+        ]
+      },
+      "equation": "recipient net increase + paid fee - total refunded - separate recipient external fee payout = transfer amount",
+      "message": {
+        "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+        "value": "1 GEN"
+      },
+      "childReceipts": [],
+      "childBoundary": "External native transfer executed within finalized parent; no triggered child transaction reported"
+    },
+    {
+      "case": "expiry",
+      "role": "funder",
+      "parentReceipt": {
+        "transactionHash": "0x72a2eeb28897d84953f7f9b21551e89f808ef577ade9f2206bbf1b32c4863605",
+        "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+        "status": "FINALIZED",
+        "executionResult": "SUCCESS"
+      },
+      "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+      "amount": "1 GEN",
+      "nativeBefore": "1 GEN",
+      "nativeAfter": "0 GEN",
+      "nativeDecrease": "1 GEN",
+      "recipientBefore": "41.28522847658286329 GEN",
+      "recipientAfter": "42.285102171082862467 GEN",
+      "recipientNetIncrease": "0.999873694499999177 GEN",
+      "fee": {
+        "status": "settled",
+        "paid": "0.001218825600010352 GEN",
+        "refunded": "0.001087270100009529 GEN",
+        "charged": "0.000131555500000823 GEN",
+        "recipientFeePayout": "0.00000525 GEN",
+        "netCharged": "0.000126305500000823 GEN",
+        "externalFeePayouts": [
+          {
+            "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+            "amount": "0.00000525 GEN"
+          }
+        ]
+      },
+      "equation": "recipient net increase + paid fee - total refunded - separate recipient external fee payout = transfer amount",
+      "message": {
+        "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+        "value": "1 GEN"
+      },
+      "childReceipts": [],
+      "childBoundary": "External native transfer executed within finalized parent; no triggered child transaction reported"
+    },
+    {
+      "case": "digest",
+      "role": "funder",
+      "parentReceipt": {
+        "transactionHash": "0x139a140053f81b16eecf749dfb8523d85b2dee3033a114a5a8226b54ab6d6772",
+        "contractAddress": "0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+        "status": "FINALIZED",
+        "executionResult": "SUCCESS"
+      },
+      "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+      "amount": "1 GEN",
+      "nativeBefore": "1 GEN",
+      "nativeAfter": "0 GEN",
+      "nativeDecrease": "1 GEN",
+      "recipientBefore": "41.284787451332859175 GEN",
+      "recipientAfter": "42.284661145832858352 GEN",
+      "recipientNetIncrease": "0.999873694499999177 GEN",
+      "fee": {
+        "status": "settled",
+        "paid": "0.001218825600010352 GEN",
+        "refunded": "0.001087270100009529 GEN",
+        "charged": "0.000131555500000823 GEN",
+        "recipientFeePayout": "0.00000525 GEN",
+        "netCharged": "0.000126305500000823 GEN",
+        "externalFeePayouts": [
+          {
+            "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+            "amount": "0.00000525 GEN"
+          }
+        ]
+      },
+      "equation": "recipient net increase + paid fee - total refunded - separate recipient external fee payout = transfer amount",
+      "message": {
+        "recipient": "0xC495ef51618D03267A1f227aFe5b27B38c748272",
+        "value": "1 GEN"
+      },
+      "childReceipts": [],
+      "childBoundary": "External native transfer executed within finalized parent; no triggered child transaction reported"
+    }
+  ],
+  "accounting": {
+    "conserved": true,
+    "credits": "0 GEN",
+    "locked": "0 GEN",
+    "received": "7 GEN",
+    "withdrawn": "7 GEN"
+  },
+  "nativeBalance": "0 GEN",
+  "explorer": [
+    {
+      "url": "https://explorer-studio-dev.genlayer.com/address/0x8bcD9EA123F0066Eb913ACf6BbEb4D26fD772ed6",
+      "httpStatus": 200
+    },
+    {
+      "url": "https://explorer-studio-dev.genlayer.com/transactions/0xf636067e3b0fde4216c91c9ccac123b67562b1f2ef92ef3d42772e3f65ba9e21",
+      "httpStatus": 200
+    }
+  ],
+  "evidenceIsSanitized": true
+}

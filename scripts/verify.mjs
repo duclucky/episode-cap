@@ -3,8 +3,10 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {safeReceipt} from './receipts.mjs';
 import {settledTransferFee} from './transfer-fees.mjs';
-import {EVIDENCE,DEPLOYMENT,CHAIN,context,sourceHash,gen,amount,addressArg,guard,report,load,save,view} from './network.mjs';
+import {paceFetch} from './request-pacing.mjs';
+import {EVIDENCE,DEPLOYMENT,RPC,CHAIN,context,sourceHash,gen,amount,addressArg,guard,report,load,save,view} from './network.mjs';
 async function main(){
+  globalThis.fetch=paceFetch(globalThis.fetch.bind(globalThis),RPC);
   const d=load(DEPLOYMENT),lifecycle=load(path.join(EVIDENCE,'lifecycle.json'));
   guard(d?.active&&d.chainId===CHAIN&&lifecycle?.chainId===CHAIN&&lifecycle.contractAddress===d.contractAddress,'COMPLETE_LIFECYCLE_IDENTITY_REQUIRED');
   const {publicClient}=await context(false),address=d.contractAddress;
@@ -25,7 +27,7 @@ async function main(){
     const attempts=[];for(let index=1;index<=cover.attempts;index++)attempts.push(await read('get_attempt',[item.id,index]));
     if(name==='same')guard(occurrences.count===1&&attempts[0]?.relations['access:warp']==='SAME_CAUSE'&&item.afterReview.beneficiary_credit==='1 GEN'&&item.afterReview.funder_credit==='1 GEN','SAME_CAUSE_CREDIT_REQUIRED');
     if(name==='separate')guard(occurrences.count===2&&attempts[0]?.relations['resolver:bgp']==='SEPARATE_CAUSES'&&item.afterReview.beneficiary_credit==='2 GEN'&&item.afterReview.funder_credit==='0 GEN','SEPARATE_CAUSE_CREDIT_REQUIRED');
-    if(name==='retry')guard(attempts.length===2&&attempts.every(x=>x.stage==='RETRYABLE')&&item.afterReview.reserve==='1 GEN'&&item.afterReview.beneficiary_credit==='0 GEN'&&item.afterExpiry.status==='REFUNDED','BOUNDED_NONPENALIZING_RETRY_REQUIRED');
+    if(name==='retry')guard(attempts.length===2&&attempts.every(x=>x.stage==='RETRYABLE'&&x.source_code==='COMPLETE'&&x.supports.access==='UNVERIFIABLE'&&x.relations['access:warp']==='UNVERIFIABLE')&&item.afterReview.status==='RETRYABLE'&&item.afterReview.reserve==='1 GEN'&&item.afterReview.funder_credit==='0 GEN'&&item.afterReview.beneficiary_credit==='0 GEN'&&item.afterExpiry.status==='REFUNDED','BOUNDED_AUTHENTICATED_UNSUPPORTED_MEANING_REQUIRED');
     if(name==='digest')guard(attempts.length===1&&attempts[0].source_code==='DIGEST_MISMATCH'&&item.afterReview.reserve==='1 GEN'&&item.afterExpiry.status==='REFUNDED','SOURCE_VERSION_FAILURE_RECOVERY_REQUIRED');
     if(name==='expiry')guard(attempts.length===0&&item.afterExpiry.status==='REFUNDED','UNRATIFIED_EXPIRY_REQUIRED');
     for(const owner of Object.values(lifecycle.roles))guard(String(await view(publicClient,address,'get_credit',[item.id,addressArg(owner)]))==='0 GEN','NO_RESIDUAL_CREDIT_REQUIRED');
@@ -54,7 +56,7 @@ async function main(){
     receipts.push(proof);
   }
   const explorer=[];for(const url of [d.explorerUrl,d.deployTxUrl]){const response=await fetch(url);guard(response.ok,'EXPLORER_REACHABILITY_REQUIRED');explorer.push({url,httpStatus:response.status});}
-  const proof={command:'node scripts/verify.mjs',at:new Date().toISOString(),mode:'READ_ONLY',network:'Studio Dev',chainId:CHAIN,contractAddress:address,sourceSha256:deployedHash,methodCount:12,cases,receipts,withdrawals,accounting,nativeBalance,explorer,evidenceIsSanitized:true};
+  const proof={command:'node scripts/verify.mjs',at:new Date().toISOString(),mode:'READ_ONLY',rpcIntervalMs:2200,network:'Studio Dev',chainId:CHAIN,contractAddress:address,sourceSha256:deployedHash,methodCount:12,cases,receipts,withdrawals,accounting,nativeBalance,explorer,evidenceIsSanitized:true};
   save(path.join(EVIDENCE,'reverification.json'),proof);
   console.log(JSON.stringify({stage:'STUDIO_DEV_VERIFY_PASS',address,cases:Object.keys(cases).length,receipts:receipts.length,withdrawals:withdrawals.length,accounting,nativeBalance,explorer}));
 }

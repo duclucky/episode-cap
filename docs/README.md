@@ -5,7 +5,7 @@
 - Idea ID: IDEA-039.
 - Name/slug: EpisodeCap / episode-cap.
 - Category: Intelligent Contracts; contract-only.
-- Status: DESIGN; fourteen admission gates passed, execution pending.
+- Status: IMPLEMENTED; fourteen admission gates passed; full lifecycle PASS_EXECUTION. Historical strict-TDD limitation remains documented.
 - Repository: local child Git root episode-cap; public URL pending publication.
 - Target: Studio Dev, chain 61997, RPC https://studio-next.genlayer.com/api.
 
@@ -57,7 +57,7 @@ All results are admission, not execution or adoption.
 | Contract count | PASS_ADMISSION | One state owner owns evidence, causal judgment, cap and enforcement |
 | Differentiation | PASS_ADMISSION | Causal partition/cap differs from applicability, research attribution, replay lease and priority waterfall |
 | Claim-to-code | PASS_ADMISSION | Complete method/state/view/test/required network proof table below |
-| Full lifecycle | PASS_ADMISSION / PENDING_EXECUTION | Same/separate/retry/expiry/withdraw/zero-close acceptance specified; real finalized lifecycle still required |
+| Full lifecycle | PASS_ADMISSION / PASS_EXECUTION | Five finalized signed cases, canonical reads, six exact withdrawals, 7 GEN conserved and zero native liability; reverification.json |
 | Scope honesty | PASS_ADMISSION | Only provider-published report-trigger promise; no insurance/customer-loss/adoption claim |
 
 ## Actors, roles and incentives
@@ -288,13 +288,13 @@ schema/negative smoke and finalized judgments supplement local tests.
 
 | Product claim | Method/state | View/read | Direct test | Network evidence |
 | --- | --- | --- | --- | --- |
-| Exact jointly accepted definition | create/ratify, RATIFYING->READY | cover/event | Wrong role/digest/entity/version/replay, immutable definitions | PENDING: finalized create/assent and digest reads |
-| One cascade, one occurrence | review/full matrix | attempt/occurrences | June12 Access/WARP same cause, paraphrase vs opposite relation | PENDING: finalized same-cause canonical roots |
-| Non-causal same-time events separate | review/full matrix | occurrences/credit | July14 resolver outage vs explicitly non-causal BGP event | PENDING: finalized two-component read |
-| Actual deterministic cap | review/ledger | credit/accounting | 2 GEN gives 1+1 for one group, 2+0 for two groups | PENDING: exact reserve and finalized credit reads |
-| Stable forged evidence cannot pay | provenance/normalization | cover/attempt/accounting | Each authority-row tripwire with unchanged hard state | PENDING: exact-source metadata/negative smoke |
-| Invalid partition cannot move GEN | normalization/clique checks | attempt/occurrences | Extra/missing/duplicate IDs, enums, unsupported event and triangle | PENDING: source commit and valid full matrix evidence |
-| Recovery reaches zero | expire/withdraw/close | cover/credit/accounting | Full recovery/time/duplicate/accounting negative matrix | PENDING: refund/child/native/recipient and zero-close evidence |
+| Exact jointly accepted definition | create/ratify, RATIFYING->READY | cover/event | Wrong role/digest/entity/version/replay, immutable definitions | reverification.json: exact cover/events/definition digests plus finalized create/ratify receipts |
+| One cascade, one occurrence | review/full matrix | attempt/occurrences | June12 Access/WARP same cause, paraphrase vs opposite relation | reverification.json cases.same: SAME_CAUSE, one canonical occurrence |
+| Non-causal same-time events separate | review/full matrix | occurrences/credit | July14 resolver outage vs explicitly non-causal BGP event | reverification.json cases.separate: SEPARATE_CAUSES, two canonical occurrences |
+| Actual deterministic cap | review/ledger | credit/accounting | 2 GEN gives 1+1 for one group, 2+0 for two groups | lifecycle.json afterReview: same 1+1 GEN, separate 2+0 GEN; six exact withdrawals |
+| Stable forged evidence cannot pay | provenance/normalization | cover/attempt/accounting | Each authority-row tripwire with unchanged hard state | Deployed SHA256 plus metadata-smoke.json; live retry source COMPLETE/UNVERIFIABLE and digest failure; hash-valid forged-origin combinations are direct-test proof |
+| Invalid partition cannot move GEN | normalization/clique checks | attempt/occurrences | Extra/missing/duplicate IDs, enums, unsupported event and triangle | Source 8c462ac/8b1e0311; finalized valid full matrices; malicious-output rejection is direct-test proof |
+| Recovery reaches zero | expire/withdraw/close | cover/credit/accounting | Full recovery/time/duplicate/accounting negative matrix | reverification.json: expiry/retry/digest refunds, six exact EVM transfer proofs, all covers CLOSED and native 0 GEN |
 
 ## Analogue and differentiation matrix
 
@@ -329,22 +329,22 @@ simulation. Fee requests and action authority remain separately enforced.
 
 ## Definition of Done
 
-- [ ] Reusable contract primitive and canonical API documented.
-- [ ] Semantic independent validator and deterministic settlement invariants.
-- [ ] Lint recognizes exactly one project class; ASCII/header/metadata correct.
-- [ ] Direct/gltest/adversarial/recovery/temporal/receipt/check all pass.
-- [ ] Real finalized same/separate/recovery lifecycles with direct consequence.
-- [ ] Canonical reads, exact native decreases, recipient/child and zero liability.
+- [x] Reusable contract primitive and canonical API documented.
+- [x] Semantic independent validator and deterministic settlement invariants.
+- [x] Lint recognizes exactly one project class; ASCII/header/metadata correct.
+- [x] Direct/gltest/adversarial/recovery/temporal/receipt/check all pass.
+- [x] Real finalized same/separate/recovery lifecycles with direct consequence.
+- [x] Canonical reads, exact native decreases, recipient/child and zero liability.
 - [ ] Public hygiene, meaningful history, public repo and successful CI verified.
-- [ ] Copy-ready verified Portal fields and unchanged grading bot NO BLOCKER.
+- [ ] Copy-ready verified Portal fields and objective grading bot NO BLOCKER, without weakened rules.
 - [ ] Final master-prompt item-by-item audit; all uncertainty listed honestly.
 
 Projects checks N/A: no user-facing app, browser workflow or hosting.
 
 ## Honest limitations
 
-Admission and unsigned feasibility are verified; implementation/network/GitHub/CI
-are pending. Only provider-published statement meaning is judged, not objective
+Admission, implementation and finalized Studio Dev lifecycle are verified. GitHub/CI
+are pending; strict historical test-first chronology is not certified. Only provider-published statement meaning is judged, not objective
 independent telemetry, customer identity/loss or legal insurance coverage.
 One fixed origin and two sources per bounded cover; changes may require expiry
 and a new co-ratified cover. Proposed consumers are not adopters.
