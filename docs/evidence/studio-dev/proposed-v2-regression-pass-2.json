@@ -1,0 +1,70 @@
+{
+  "command": "node scripts/semantic-regression.mjs --v2",
+  "at": "2026-10-06T03:29:48.277Z",
+  "mode": "UNSIGNED_PROPOSED_EC_V2_REGRESSION",
+  "baselineSourceSha256": "bde505671761fb7d6249e538553d99d874f7c69044eff76312e74f48e7d4de43",
+  "proposedSourceSha256": "8b1e0311e3ff2bc63cdf5d94f92603d8eb882c54d440c02747957ea0a50df825",
+  "noKeysLoaded": true,
+  "noTransactionSubmitted": true,
+  "noGENSent": true,
+  "executionResult": "SUCCESS",
+  "cases": [
+    {
+      "name": "same",
+      "stage": "JUDGED",
+      "sourceCode": "",
+      "supports": [
+        "SUPPORTED",
+        "SUPPORTED"
+      ],
+      "relation": "SAME_CAUSE",
+      "complete": true,
+      "occurrenceCount": 1,
+      "expectedCount": 1
+    },
+    {
+      "name": "separate",
+      "stage": "JUDGED",
+      "sourceCode": "",
+      "supports": [
+        "SUPPORTED",
+        "SUPPORTED"
+      ],
+      "relation": "SEPARATE_CAUSES",
+      "complete": true,
+      "occurrenceCount": 2,
+      "expectedCount": 2
+    },
+    {
+      "name": "unsupported_payment",
+      "stage": "JUDGED",
+      "sourceCode": "",
+      "supports": [
+        "UNVERIFIABLE",
+        "SUPPORTED"
+      ],
+      "relation": "UNVERIFIABLE",
+      "complete": false,
+      "occurrenceCount": 0,
+      "expectedCount": 0
+    },
+    {
+      "name": "contradictory_event",
+      "stage": "JUDGED",
+      "sourceCode": "",
+      "supports": [
+        "UNVERIFIABLE",
+        "SUPPORTED"
+      ],
+      "relation": "UNVERIFIABLE",
+      "complete": false,
+      "occurrenceCount": 0,
+      "expectedCount": 0
+    }
+  ],
+  "categories": [
+    "nondet"
+  ],
+  "passed": true,
+  "scope": "Proposed source only; not a production deployment or finalized consensus"
+}

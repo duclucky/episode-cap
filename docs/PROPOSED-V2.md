@@ -1,11 +1,13 @@
-# Proposed EC_V2 evidence policy - approval pending
+# EC_V2 evidence policy - owner approved
 
 The first revision is abandoned and recovered to zero native balance. There is
-no active replacement deployment yet.
+no active replacement deployment yet. The owner approved this concrete policy
+and replacement deployment on 2026-10-06 ("duyet"). Production promotion is
+complete; finalized replacement lifecycle evidence is still pending.
 
 ## Concrete change
 
-The `source_digest` field would become SHA256 of the exact UTF8 review text,
+The `source_digest` field is SHA256 of the exact UTF8 review text,
 derived once by the versioned `_text` function, rather than SHA256 of raw HTML.
 That same text is passed to the semantic model. The representation is locked by
 EC_V2, source commit and deployment address; existing EC_V1 ratifications are not
@@ -24,7 +26,7 @@ Checks retained before any model call:
    deterministic fixed-recipient GEN credit.
 
 Raw HTML-only script/style changes, whose bytes are excluded from the model's
-input, would no longer invalidate an unchanged reviewed report. Wrong origin,
+input, no longer invalidate an unchanged reviewed report. Wrong origin,
 canonical URL/date, excerpt, or reviewed-content version still cannot pay.
 Amounts, callers, deadlines, attempt limit, payout mapping, accounting,
 withdrawals and all six safety rows remain unchanged.
@@ -54,9 +56,11 @@ Completed prototype checks on 2026-10-06:
   separate=2, unsupported payment=UNVERIFIABLE and contradictory event=UNVERIFIABLE.
   See [first pass](evidence/studio-dev/proposed-v2-regression-pass-1.json) and
   [second pass](evidence/studio-dev/proposed-v2-regression-pass-2.json).
-- The current local check runs 101 production tests plus six prototype tests
-  (107 total), and 19 deployment/parser tests. Prototype results remain distinct
-  from production deployment and finalized validator agreement.
+- After approval, all six representation regressions target the production
+  source. `npm run check` passes 107 direct tests and 19 deployment/parser tests.
+  The unsigned exact-production regression passes all four cases; see
+  [production proof](evidence/studio-dev/production-semantic-regression.json).
+  Unsigned results remain distinct from finalized validator agreement.
 
 Canonical text unchanged under an excluded script/style mutation; changed
 reviewed content rejected before the model; wrong URL/date/excerpt rejected even
@@ -68,6 +72,6 @@ the exact runtime. No previous failed case may be deleted or relabeled.
 
 This follows the requirement to derive reviewed text/bytes once and hash that
 same representation. It changes the public meaning of `source_digest`, so it
-requires owner approval before production promotion or replacement deployment.
+received owner approval before production promotion or replacement deployment.
 It does not prove actual customer loss, payment, subscription or service delivery;
 only the meaning of authenticated provider-published statements is judged.

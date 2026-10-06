@@ -11,7 +11,7 @@ from genlayer.storage import DynArray, TreeMap
 from genlayer.types import Address, bigint, u256
 
 GEN = 10 ** 18
-VERSION = "EC_V1"
+VERSION = "EC_V2"
 SUPPORT = ("SUPPORTED", "UNVERIFIABLE")
 RELATIONS = ("SAME_CAUSE", "SEPARATE_CAUSES", "UNVERIFIABLE")
 
@@ -85,8 +85,6 @@ def _source_body(response, event):
     body = response.body
     if response.status != 200 or not isinstance(body, bytes) or not 1000 <= len(body) <= 500000:
         return None, "SOURCE_UNAVAILABLE"
-    if hashlib.sha256(body).hexdigest() != event["source_digest"]:
-        return None, "DIGEST_MISMATCH"
     try:
         decoded = body.decode("utf-8")
         canonical = 'rel="canonical" href="' + event["source_url"] + '"'
@@ -96,6 +94,8 @@ def _source_body(response, event):
         text = _text(body)
         if not 1000 <= len(text) <= 60000:
             return None, "EXTRACTION_BOUND"
+        if hashlib.sha256(text.encode("utf-8")).hexdigest() != event["source_digest"]:
+            return None, "DIGEST_MISMATCH"
         if event["excerpt"] not in text:
             return None, "EVENT_BINDING"
         return text, "COMPLETE"
@@ -169,8 +169,8 @@ def _semantic_task(events):
     selections = [{"id": event["id"], "event": event["event"], "excerpt": event["excerpt"], "source_url": event["source_url"], "report_date": event["report_date"]} for event in events]
     report_text = {event["source_url"]: event["review_text"] for event in events}
     prompt = (
-        "EPISODECAP EC_V1 LOCKED TASK. Interpret only exact independently acquired provider reports. "
-        "Each selected event must be affirmatively supported by its exact excerpt in report context: SUPPORTED or UNVERIFIABLE. "
+        "EPISODECAP EC_V2 LOCKED TASK. Interpret only exact independently acquired provider reports. "
+        "The event field is the FULL factual proposition being judged, not a display label. The excerpt is only a location anchor and may describe something different. SUPPORTED requires affirmative report support for EVERY material assertion in event, including product, event type, outcome and stated timing. A genuine excerpt never proves an unrelated event description. If any asserted fact is absent or contradicted, return UNVERIFIABLE. In particular, an outage excerpt cannot prove compensation, payment, customer loss, subscription, identity or another unreported action. First assess the complete event descriptions against the report. If either endpoint is UNVERIFIABLE, its pair relation must also be UNVERIFIABLE. Per event return SUPPORTED or UNVERIFIABLE. "
         "For EVERY unordered pair in the supplied ID order return SAME_CAUSE, SEPARATE_CAUSES or UNVERIFIABLE. "
         "SAME_CAUSE requires explicit support that both events form one common causal outage. SEPARATE_CAUSES requires explicit separate or non-causal support. "
         "Same URL/provider, time overlap, similar symptoms or missing details never establishes common cause. Do not guess customer loss, insurance or external upstream identity. "

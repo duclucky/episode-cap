@@ -1,9 +1,9 @@
 {
   "command": "node scripts/studio-dev.mjs smoke",
-  "at": "2026-10-06T02:18:52.076Z",
+  "at": "2026-10-06T08:00:39.250Z",
   "chainId": 61997,
   "rpc": "https://studio-next.genlayer.com/api",
-  "sourceSha256": "bde505671761fb7d6249e538553d99d874f7c69044eff76312e74f48e7d4de43",
+  "sourceSha256": "8b1e0311e3ff2bc63cdf5d94f92603d8eb882c54d440c02747957ea0a50df825",
   "executionResult": "SUCCESS",
   "methods": [
     "close_cover",

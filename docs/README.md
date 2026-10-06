@@ -28,7 +28,7 @@ itself and escrows its funded cap. It does not adjudicate customer loss.
 - Actors/adversary: immutable funder prefers fewer payable occurrences;
   different named beneficiary prefers more.
 - Evidence/authenticity: independent HTTPS fetch of provider-owned Cloudflare
-  postmortems, canonical URL/publication date/raw digest/exact excerpt binding,
+  postmortems, canonical URL/publication date/review-text digest/exact excerpt binding,
   plus authenticated beneficiary ratification of the complete definition.
 - Consensus question: each exact reported event is supported, and every pair
   has affirmative same-cause, separate/non-causal or unverifiable meaning.
@@ -146,12 +146,12 @@ HTTPS blog.cloudflare.com. Strict path: /[a-z0-9-]{1,120}/, max URL200, no query
 fragment, port, credentials or other host. Max two distinct URLs per cover.
 Raw body 1000-500000 bytes, HTTP200, UTF8, exact canonical self-URL and JSON-LD
 datePublished matching the locked YYYY-MM-DD; source date <= creation time.
-Raw SHA256 must match the exact locked digest before any model call. Derive
+Exact UTF8 review-text SHA256 must match the locked digest before any model call. Derive
 text only from those bytes: remove script/style and tags, HTML-unescape,
 normalize whitespace; bound text <=60000. Required exact excerpt <=500 must
 occur; semantic selector <=300 is role-authored and jointly accepted.
 
-Canonical policy EC_V1, network/contract/cover/roles/amount/deadlines and complete
+Canonical policy EC_V2, network/contract/cover/roles/amount/deadlines and complete
 event definitions are included in the definition digest. Beneficiary's network
 signature constitutes assent only; no issuer signature or external fact is
 invented. Unique ID, exact digest, false-to-true assent and transaction time
@@ -169,8 +169,8 @@ Only supported provider-reported causal meaning may reach the consequence.
 
 | Consequential claim/fact | Evidence/artifact | Data controller | Authoritative source/issuer | Deterministic verification | Canonical objective/entity/actor binding | Freshness/anti-replay | Semantic role after verification | Non-penalizing failure state | Consequence blocked | Required negative test |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Exact funded trigger and destinations jointly accepted | Immutable typed cover/events and assent tx | Funder authors definitions; beneficiary assent | Protocol-native actual escrow; network authenticated named wallets | Strict inputs, full EC_V1 digest, sender equals beneficiary | chain/contract/cover/roles/GEN/deadlines/event definitions | Unique ID; exact digest once before ratify deadline | Locked selection/policy only, no external loss proof | Revert/retain pending | Readiness, review, credits, settlement | Valid digest from outsider/other entity/version; replay/late/future creation keeps hard state/accounting unchanged |
-| Provider published selected reported events | Bound exact remote postmortem | Provider; actor chooses only selectors/digest | Independent exact HTTPS blog.cloudflare.com acquisition | URL allowlist, HTTP200, canonical URL/date, raw hash, UTF8/size and excerpt containment | Exact cover/event/source/provider/publication/version binding | Publication <=creation; immutable digest; refetch per timely attempt | Reported event support and causal interpretation only | RETRYABLE | Credit/refund settlement, slash/access/routing/value consequence | Hash-valid claimant host, copied canonical tag, wrong report/date/event/digest, missing excerpt or injection pays nothing |
+| Exact funded trigger and destinations jointly accepted | Immutable typed cover/events and assent tx | Funder authors definitions; beneficiary assent | Protocol-native actual escrow; network authenticated named wallets | Strict inputs, full EC_V2 digest, sender equals beneficiary | chain/contract/cover/roles/GEN/deadlines/event definitions | Unique ID; exact digest once before ratify deadline | Locked selection/policy only, no external loss proof | Revert/retain pending | Readiness, review, credits, settlement | Valid digest from outsider/other entity/version; replay/late/future creation keeps hard state/accounting unchanged |
+| Provider published selected reported events | Bound exact remote postmortem | Provider; actor chooses only selectors/digest | Independent exact HTTPS blog.cloudflare.com acquisition | URL allowlist, HTTP200, canonical URL/date, exact review-text hash, UTF8/size and excerpt containment | Exact cover/event/source/provider/publication/version binding | Publication <=creation; immutable digest; refetch per timely attempt | Reported event support and causal interpretation only | RETRYABLE | Credit/refund settlement, slash/access/routing/value consequence | Hash-valid claimant host, copied canonical tag, wrong report/date/event/digest, missing excerpt or injection pays nothing |
 | Full verdict defines valid occurrence partition | Normalized full support/pair labels | Leader proposes; validators independently judge | Independent refetch/replay and deterministic invariants | Exact IDs/coverage/enums, clique consistency; code derives roots/count/amounts | Locked expected event set, current cover/digest/attempt | Bounded current attempt; no terminal review | Meaning of support and causal relations; rationale noncritical | Revert or RETRYABLE | Credits, settlement, reserve release | Opposite meaning/invalid leader, missing/extra/duplicate IDs, invalid enum or nontransitive triangle leaves accounting unchanged |
 
 ## Consensus design
@@ -179,12 +179,25 @@ Only supported provider-reported causal meaning may reach the consequence.
 
 Capture locked records outside nondet; inner no-arg leader never accesses self.
 Fetch each distinct source once, validate objective bindings and exact digest,
-derive bounded text, verify excerpts, then ask only for semantic fields. Every
+derive bounded text once and hash the same representation sent to the model,
+verify excerpts, then ask only for semantic fields. Every
 expected event gets support SUPPORTED/UNVERIFIABLE. Every unordered pair gets
 SAME_CAUSE/SEPARATE_CAUSES/UNVERIFIABLE. Time overlap, same URL/provider or
 similar symptoms alone never establishes a shared cause. No missing external
 cause may be invented. Output amounts, recipients, policy changes are ignored
 as non-authoritative metadata or rejected when they change required shape.
+
+The full event description is the proposition to verify, not a display label.
+The excerpt is a location anchor. Every material assertion must be supported by
+the authenticated report; a valid outage excerpt cannot prove an unreported
+payment, customer loss, subscription or identity. Missing or contradictory
+assertions yield UNVERIFIABLE and cannot open credit.
+
+EC_V2 was owner-approved on 2026-10-06. It replaces the raw HTML hash with the
+hash of exact review text, excluding script/style bytes not supplied to the
+model. Origin, canonical URL, publication date, UTF8/size, excerpt and digest
+checks remain mandatory. Changed review text is DIGEST_MISMATCH before any LLM
+call. No EC_V1 cover migrates; the prior revision is abandoned and recovered.
 
 ### Consensus-critical fields
 

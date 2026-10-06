@@ -1,6 +1,8 @@
 """Synthetic provider fixtures test local semantics, never live provenance."""
 import copy
 import hashlib
+import html
+import re
 import json
 import sys
 from types import SimpleNamespace
@@ -16,7 +18,9 @@ BODY = ('<html><link rel="canonical" href="' + URL + '"><script type="applicatio
 
 
 def records(body=BODY):
-    return [{"id": identifier, "event": event, "excerpt": event, "source_url": URL, "source_digest": hashlib.sha256(body).hexdigest(), "report_date": DATE} for identifier, event in [("access", "Access failed."), ("warp", "WARP failed.")]]
+    clean = re.sub(r"<(script|style)\b[^>]*>.*?</\1>", " ", body.decode('utf-8'), flags=re.DOTALL | re.IGNORECASE)
+    text = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", clean))).strip()
+    return [{"id": identifier, "event": event, "excerpt": event, "source_url": URL, "source_digest": hashlib.sha256(text.encode('utf-8')).hexdigest(), "report_date": DATE} for identifier, event in [("access", "Access failed."), ("warp", "WARP failed.")]]
 
 
 def model(relation="SAME_CAUSE", support="SUPPORTED"):
@@ -177,9 +181,9 @@ def test_hash_valid_but_unauthenticated_or_misbound_source_never_settles(world, 
     elif failure == "unavailable": status = 503
     elif failure == "bound": body = b"x" * 500001
     elif failure == "invalid_utf8": body = b"\xff" * 1100
-    if failure in ("canonical", "date", "invalid_utf8"):
+    if failure in ("canonical", "date"):
         # Simulate ratified hash-valid bytes; provider authority/binding still required.
-        digest = hashlib.sha256(body).hexdigest()
+        digest = hashlib.sha256(w.module._text(body).encode('utf-8')).hexdigest()
         for index in range(2): w.contract.events["cover:" + str(index)].source_digest = digest
     before = state(w)
     mock(w, body=body, status=status)

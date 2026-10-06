@@ -1,0 +1,73 @@
+{
+  "command": "node scripts/representation-probe.mjs",
+  "at": "2026-10-06T03:12:20.117Z",
+  "mode": "UNSIGNED_REPRESENTATION_PROBE",
+  "noKeysLoaded": true,
+  "noTransactionSubmitted": true,
+  "noGENSent": true,
+  "executionResult": "SUCCESS",
+  "records": [
+    {
+      "index": 0,
+      "attempt": 0,
+      "status": 200,
+      "rawDigest": "1ec34e0e5d02efa07f03f3e47869b63bf36d5e9578a985be9ee94aa9f7fdb3fa",
+      "reviewDigest": "a9a51d80d491cd5d62fcdda143c71ccd883cb98c3bfbb2bfbc46ed0d29d7853d",
+      "canonical": true,
+      "published": "2025-06-12",
+      "reviewLength": 28840
+    },
+    {
+      "index": 0,
+      "attempt": 1,
+      "status": 200,
+      "rawDigest": "1ec34e0e5d02efa07f03f3e47869b63bf36d5e9578a985be9ee94aa9f7fdb3fa",
+      "reviewDigest": "a9a51d80d491cd5d62fcdda143c71ccd883cb98c3bfbb2bfbc46ed0d29d7853d",
+      "canonical": true,
+      "published": "2025-06-12",
+      "reviewLength": 28840
+    },
+    {
+      "index": 0,
+      "attempt": 2,
+      "status": 200,
+      "rawDigest": "1ec34e0e5d02efa07f03f3e47869b63bf36d5e9578a985be9ee94aa9f7fdb3fa",
+      "reviewDigest": "a9a51d80d491cd5d62fcdda143c71ccd883cb98c3bfbb2bfbc46ed0d29d7853d",
+      "canonical": true,
+      "published": "2025-06-12",
+      "reviewLength": 28840
+    },
+    {
+      "index": 1,
+      "attempt": 0,
+      "status": 200,
+      "rawDigest": "604155db5bea9e0edf11e124262747515d48cef06c1123675c6735e466727819",
+      "reviewDigest": "0b0f1b7a9cc6581b97464664ef58b44e7007cf4165668d4384c194907b14f139",
+      "canonical": true,
+      "published": "2025-07-15",
+      "reviewLength": 24742
+    },
+    {
+      "index": 1,
+      "attempt": 1,
+      "status": 200,
+      "rawDigest": "604155db5bea9e0edf11e124262747515d48cef06c1123675c6735e466727819",
+      "reviewDigest": "0b0f1b7a9cc6581b97464664ef58b44e7007cf4165668d4384c194907b14f139",
+      "canonical": true,
+      "published": "2025-07-15",
+      "reviewLength": 24742
+    },
+    {
+      "index": 1,
+      "attempt": 2,
+      "status": 200,
+      "rawDigest": "604155db5bea9e0edf11e124262747515d48cef06c1123675c6735e466727819",
+      "reviewDigest": "0b0f1b7a9cc6581b97464664ef58b44e7007cf4165668d4384c194907b14f139",
+      "canonical": true,
+      "published": "2025-07-15",
+      "reviewLength": 24742
+    }
+  ],
+  "reviewTextStable": true,
+  "scope": "No production policy change or finalized consensus; hashes represent the exact text currently supplied to the semantic model"
+}
